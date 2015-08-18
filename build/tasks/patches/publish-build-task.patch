@@ -42,11 +42,11 @@
 
  getAtomDraftRelease = (callback) ->
 -  atomRepo = new GitHub({repo: 'atom/atom', token})
-+  atomRepo = new GitHub({repo: 'spark/spark-dev', token})
++  atomRepo = new GitHub({repo: 'spark/particle-dev-app', token})
    atomRepo.getReleases (error, releases=[]) ->
      if error?
 -      logError('Fetching atom/atom releases failed', error, releases)
-+      logError('Fetching spark/spark-dev releases failed', error, releases)
++      logError('Fetching spark/particle-dev-app releases failed', error, releases)
        callback(error)
      else
        [firstDraft] = releases.filter ({draft}) -> draft
@@ -55,7 +55,7 @@
    {version} = require('../../package.json')
    options =
 -    uri: 'https://api.github.com/repos/atom/atom/releases'
-+    uri: 'https://api.github.com/repos/spark/spark-dev/releases'
++    uri: 'https://api.github.com/repos/spark/particle-dev-app/releases'
      method: 'POST'
      headers: defaultHeaders
      json:
@@ -64,7 +64,7 @@
    request options, (error, response, body='') ->
      if error? or response.statusCode isnt 201
 -      logError("Creating atom/atom draft release failed", error, body)
-+      logError("Creating spark/spark-dev draft release failed", error, body)
++      logError("Creating spark/particle-dev-app draft release failed", error, body)
        callback(error ? new Error(response.statusCode))
      else
        callback(null, body)
