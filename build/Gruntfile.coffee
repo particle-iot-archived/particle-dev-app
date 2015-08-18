@@ -64,6 +64,10 @@ module.exports = (grunt) ->
       'patch-atom-version',
       'inject-packages',
       'bootstrap-atom',
+
+    ]
+    tasks.push('install-particle-dev') if not grunt.config.get('particleDevApp.isRelease')
+    tasks = tasks.concat [
       'copy-resources',
       'patch-code',
     ]

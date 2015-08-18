@@ -20,9 +20,7 @@ module.exports = (grunt) ->
 
     if grunt.config.get 'particleDevApp.isRelease'
       injectPackage 'spark-dev', grunt.config.get('particleDevApp.particleDevVersion')
-    else
-      grunt.task.run ['install-particle-dev']
-      
+
     injectPackage 'particle-dev-release-notes', '0.53.2'
     injectPackage 'language-particle', '0.3.4'
     injectPackage 'particle-dev-exception-reporting', '0.36.1'
