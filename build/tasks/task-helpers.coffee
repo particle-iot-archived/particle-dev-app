@@ -3,7 +3,7 @@ fs = require 'fs-extra'
 
 module.exports = (grunt) ->
   injectPackage: (name, version=null) ->
-    packageJson = path.join(grunt.config.get('workDir'), 'package.json')
+    packageJson = path.join(grunt.config.get('particleDevApp.workDir'), 'package.json')
     packages = JSON.parse(fs.readFileSync(packageJson))
     if !version
       delete packages.packageDependencies[name]
@@ -12,7 +12,7 @@ module.exports = (grunt) ->
     fs.writeFileSync(packageJson, JSON.stringify(packages, null, '  '))
 
   injectDependency: (name, version=null) ->
-    packageJson = path.join(grunt.config.get('workDir'), 'package.json')
+    packageJson = path.join(grunt.config.get('particleDevApp.workDir'), 'package.json')
     packages = JSON.parse(fs.readFileSync(packageJson))
     if !version
       delete packages.dependencies[name]

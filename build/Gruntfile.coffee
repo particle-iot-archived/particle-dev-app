@@ -29,6 +29,7 @@ module.exports = (grunt) ->
   grunt.log.writeln '(i) Atom version is ' + atomVersion
 
   # Get Particle Dev version from options/current sources
+  isRelease = true
   if !!grunt.option('particleDevVersion')
     particleDevVersion = grunt.option('particleDevVersion')
   else if !!process.env.TRAVIS_TAG or !!process.env.APPVEYOR_REPO_TAG_NAME
@@ -39,14 +40,17 @@ module.exports = (grunt) ->
     packageJson = path.join(__dirname, '..', 'package.json')
     packageObject = JSON.parse(fs.readFileSync(packageJson))
     particleDevVersion = packageObject.version + '-' + process.env.JANKY_SHA1
+    isRelease = false
   grunt.log.writeln '(i) Particle Dev version is ' + particleDevVersion
 
   grunt.initConfig
-    workDir: workDir
-    atomVersion: atomVersion
-    particleDevVersion: particleDevVersion
-    appName: appName
-    buildDir: buildDir
+    particleDevApp:
+      workDir: workDir
+      atomVersion: atomVersion
+      particleDevVersion: particleDevVersion
+      appName: appName
+      buildDir: buildDir
+      isRelease: isRelease
 
   tasks = []
 
@@ -64,7 +68,6 @@ module.exports = (grunt) ->
       'inject-packages',
       'bootstrap-atom',
       'copy-resources',
-      'install-particle-dev',
       'patch-code',
     ]
 

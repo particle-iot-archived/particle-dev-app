@@ -5,7 +5,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'bootstrap-atom', 'Bootstraps Atom', ->
     done = @async()
 
-    process.chdir(grunt.config.get('workDir'))
+    process.chdir(grunt.config.get('particleDevApp.workDir'))
 
     cp.safeSpawn 'node', ['script/bootstrap'], ->
       done()

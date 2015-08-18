@@ -9,7 +9,7 @@ copyResource = (from, to) ->
 
 module.exports = (grunt) ->
   grunt.registerTask 'copy-resources', 'Copies resources', ->
-    workDir = grunt.config.get 'workDir'
+    workDir = grunt.config.get 'particleDevApp.workDir'
 
     copyResource 'atom.png', 'resources/atom.png'
     copyResource 'config.cson', 'dot-atom/config.cson'

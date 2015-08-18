@@ -8,8 +8,8 @@ _grunt = null
 module.exports = (grunt) ->
   _grunt = grunt
   grunt.registerTask 'build-app', 'Builds executable', ->
-    workDir = grunt.config.get('workDir')
-    grunt.option('build-dir', grunt.config.get('buildDir'))
+    workDir = grunt.config.get('particleDevApp.workDir')
+    grunt.option('build-dir', grunt.config.get('particleDevApp.buildDir'))
 
     # Register Atom's tasks
     process.chdir path.join(workDir, 'build')

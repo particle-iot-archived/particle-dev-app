@@ -12,9 +12,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'install-particle-dev', 'Installs Particle Dev package', ->
     done = @async()
-    workDir = grunt.config.get('workDir')
+    workDir = grunt.config.get('particleDevApp.workDir')
     particleDevPath = path.join(workDir, 'node_modules', 'spark-dev')
-    particleDevVersion = grunt.config.get('particleDevVersion')
+    particleDevVersion = grunt.config.get('particleDevApp.particleDevVersion')
     isDev = particleDevVersion.indexOf('-') > -1
     particleDevVersion = particleDevVersion.split('-')[0]
 

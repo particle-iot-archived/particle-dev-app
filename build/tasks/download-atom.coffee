@@ -8,10 +8,10 @@ workDir = null
 module.exports = (grunt) ->
   grunt.registerTask 'download-atom', 'Downloads Atom into working dir', ->
     done = @async()
-    workDir = grunt.config.get('workDir')
+    workDir = grunt.config.get('particleDevApp.workDir')
 
-    tarballUrl = 'https://github.com/atom/atom/archive/' + grunt.config.get('atomVersion') + '.tar.gz'
-    tarballPath = path.join(grunt.config.get('workDir'), 'atom.tar.gz')
+    tarballUrl = 'https://github.com/atom/atom/archive/' + grunt.config.get('particleDevApp.atomVersion') + '.tar.gz'
+    tarballPath = path.join(grunt.config.get('particleDevApp.workDir'), 'atom.tar.gz')
     r = request(tarballUrl)
     r.on 'end', ->
       decompress = new Decompress()

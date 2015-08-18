@@ -24,8 +24,8 @@ replaceInFile = (file, substr, newSubstr) ->
 
 module.exports = (grunt) ->
   grunt.registerTask 'patch-code', 'Patches Atom code', ->
-    workDir = grunt.config.get('workDir')
-    particleDevVersion = grunt.config.get('particleDevVersion')
+    workDir = grunt.config.get('particleDevApp.workDir')
+    particleDevVersion = grunt.config.get('particleDevApp.particleDevVersion')
     done = @async()
 
     # Remove broken spec
