@@ -56,4 +56,4 @@ module.exports = (grunt) ->
 
         installDependencies done
 
-      r.pipe(fs.createWriteStream(tarballPath))
+    r.pipe(fs.createWriteStream(tarballPath))
