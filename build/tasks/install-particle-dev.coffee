@@ -34,7 +34,7 @@ module.exports = (grunt) ->
 
       verbose = if !grunt.option('verbose') then '' else ' --verbose'
       cp.safeExec command + ' install' + verbose, options, ->
-        injectPackage 'spark-dev', particleDevVersion
+        injectPackage 'spark-dev', packages.version
         done()
 
     # Download the release
