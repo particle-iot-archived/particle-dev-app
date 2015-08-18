@@ -37,9 +37,6 @@ module.exports = (grunt) ->
     # Drop the "v" from tag name
     particleDevVersion = tag.slice(1)
   else
-    packageJson = path.join(__dirname, '..', 'package.json')
-    packageObject = JSON.parse(fs.readFileSync(packageJson))
-    particleDevVersion = packageObject.version + '-' + process.env.JANKY_SHA1
     isRelease = false
   grunt.log.writeln '(i) Particle Dev version is ' + particleDevVersion
 

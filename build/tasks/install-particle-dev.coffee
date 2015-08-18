@@ -15,7 +15,6 @@ module.exports = (grunt) ->
     workDir = grunt.config.get('particleDevApp.workDir')
     particleDevPath = path.join(workDir, 'node_modules', 'spark-dev')
     particleDevVersion = grunt.config.get('particleDevApp.particleDevVersion')
-    isDev = particleDevVersion.indexOf('-') > -1
     particleDevVersion = particleDevVersion.split('-')[0]
 
     installDependencies = (done) ->
@@ -40,30 +39,23 @@ module.exports = (grunt) ->
         injectPackage 'spark-dev', particleDevVersion
         done()
 
-    if isDev
-      # Copy current sources
-      exclude = ['.git', 'build', 'dist']
-      copyExcluding path.join(__dirname, '..', '..'), particleDevPath, exclude
-      installDependencies done
-    else
-      # Download the release
-      tarballUrl = 'https://github.com/spark/spark-dev/archive/v' + particleDevVersion + '.tar.gz'
-      tarballPath = path.join(workDir, 'sparkdev.tar.gz')
+    # Download the release
+    tarballUrl = 'https://github.com/spark/spark-dev/archive/master.tar.gz'
+    tarballPath = path.join(workDir, 'sparkdev.tar.gz')
 
-      r = request(tarballUrl)
-      r.on 'end', ->
-        decompress = new Decompress()
-        decompress.src tarballPath
-        decompress.dest particleDevPath
-        decompress.use(Decompress.targz({ strip: 1 }))
-        decompress.run (error) ->
-          if error
-            throw error
+    r = request(tarballUrl)
+    r.on 'end', ->
+      decompress = new Decompress()
+      decompress.src tarballPath
+      decompress.dest particleDevPath
+      decompress.use(Decompress.targz({ strip: 1 }))
+      decompress.run (error) ->
+        if error
+          throw error
 
-          fs.unlinkSync tarballPath
-          fs.removeSync path.join(particleDevPath, 'build')
-          fs.removeSync path.join(particleDevPath, 'docs')
+        fs.unlinkSync tarballPath
+        fs.removeSync path.join(particleDevPath, 'docs')
 
-          installDependencies done
+        installDependencies done
 
       r.pipe(fs.createWriteStream(tarballPath))
