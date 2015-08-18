@@ -2,8 +2,8 @@
 
 Particle Dev is a professional, open source, hackable IDE, designed for use with the Particle devices.
 
-[![Build Status](https://travis-ci.org/spark/particle-dev-app.svg?branch=master)](https://travis-ci.org/spark/particle-dev-app)
-
+[![OS X Build Status](https://travis-ci.org/spark/particle-dev-app.svg?branch=master)](https://travis-ci.org/spark/particle-dev-app)
+[![Windows Build Status](https://ci.appveyor.com/api/projects/status/1ueagt55c5xdes19/branch/master?svg=true)](https://ci.appveyor.com/project/suda/spark-dev/branch/master)
 ## Installing
 
 ### Mac OS X
