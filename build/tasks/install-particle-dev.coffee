@@ -7,35 +7,39 @@ _s = require 'underscore.string'
 
 workDir = null
 
+installDependencies = (done) ->
+  # Build serialport
+  packageJson = path.join(workDir, 'package.json')
+  packages = JSON.parse(fs.readFileSync(packageJson))
+  process.chdir(particleDevPath);
+  env = process.env
+  env['ATOM_NODE_VERSION'] = packages.atomShellVersion
+  env['ATOM_HOME'] = if process.platform is 'win32' then process.env.USERPROFILE else process.env.HOME
+  options = {
+    env: env
+  }
+
+  if process.platform == 'win32'
+    command = '..\\..\\apm\\node_modules\\atom-package-manager\\bin\\apm.cmd'
+  else
+    command = '../../apm/node_modules/atom-package-manager/bin/apm'
+
+  verbose = if !grunt.option('verbose') then '' else ' --verbose'
+  cp.safeExec command + ' install' + verbose, options, ->
+    injectPackage 'spark-dev', packages.version
+    done()
+
 module.exports = (grunt) ->
   {injectPackage, injectDependency, copyExcluding} = require('./task-helpers')(grunt)
 
   grunt.registerTask 'install-particle-dev', 'Installs Particle Dev package', ->
     done = @async()
+
+    if not grunt.config.get('particleDevApp.isRelease')
+      return done()
+
     workDir = grunt.config.get('particleDevApp.workDir')
     particleDevPath = path.join(workDir, 'node_modules', 'spark-dev')
-
-    installDependencies = (done) ->
-      # Build serialport
-      packageJson = path.join(workDir, 'package.json')
-      packages = JSON.parse(fs.readFileSync(packageJson))
-      process.chdir(particleDevPath);
-      env = process.env
-      env['ATOM_NODE_VERSION'] = packages.atomShellVersion
-      env['ATOM_HOME'] = if process.platform is 'win32' then process.env.USERPROFILE else process.env.HOME
-      options = {
-        env: env
-      }
-
-      if process.platform == 'win32'
-        command = '..\\..\\apm\\node_modules\\atom-package-manager\\bin\\apm.cmd'
-      else
-        command = '../../apm/node_modules/atom-package-manager/bin/apm'
-
-      verbose = if !grunt.option('verbose') then '' else ' --verbose'
-      cp.safeExec command + ' install' + verbose, options, ->
-        injectPackage 'spark-dev', packages.version
-        done()
 
     # Download the release
     tarballUrl = 'https://github.com/spark/spark-dev/archive/master.tar.gz'

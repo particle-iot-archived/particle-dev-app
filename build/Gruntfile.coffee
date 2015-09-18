@@ -2,10 +2,11 @@ path = require 'path'
 fs = require 'fs-extra'
 _s = require 'underscore.string'
 
-module.exports = (grunt) ->
-  grunt.loadTasks('tasks')
+_grunt = null
+workDir = null
+buildDir = null
 
-  appName = 'Particle Dev'
+setupDirs = ->
   if process.platform == 'win32'
     root = process.cwd().split(path.sep)[0]
     workDir = path.join(root, 'atom-work-dir')
@@ -14,10 +15,11 @@ module.exports = (grunt) ->
     workDir = path.join(__dirname, '..', 'dist', 'atom-work-dir')
     buildDir = path.join(__dirname, '..', 'dist', process.platform)
 
-  if fs.existsSync(workDir) && !grunt.option('keepAtomWorkDir')
+  if fs.existsSync(workDir) && !_grunt.option('keepAtomWorkDir')
     fs.removeSync(workDir)
   fs.ensureDirSync(workDir)
 
+getAtomVersion = ->
   # Get Atom Version from .atomrc
   atomrc = fs.readFileSync(path.join(__dirname, '..', '.atomrc')).toString()
   lines = atomrc.split "\n"
@@ -26,48 +28,38 @@ module.exports = (grunt) ->
     [key, value] = line.split '='
     if key.indexOf('ATOM_VERSION') > 0
       atomVersion = _s.trim(value)
-  grunt.log.writeln '(i) Atom version is ' + atomVersion
+  atomVersion
 
-  # Get Particle Dev version from options/current sources
-  isRelease = true
-  if !!grunt.option('particleDevVersion')
-    particleDevVersion = grunt.option('particleDevVersion')
-  else if !!process.env.TRAVIS_TAG or !!process.env.APPVEYOR_REPO_TAG_NAME
-    tag = process.env.TRAVIS_TAG ? process.env.APPVEYOR_REPO_TAG_NAME
-    # Drop the "v" from tag name
-    particleDevVersion = tag.slice(1)
-  else
-    isRelease = false
-  grunt.log.writeln '(i) Particle Dev version is ' + particleDevVersion
+module.exports = (grunt) ->
+  _grunt = grunt
+  grunt.loadTasks('tasks')
+
+  appName = 'Particle Dev'
+
+  setupDirs()
+
+  # Get Atom Version from .atomrc
+  atomVersion = getAtomVersion()
+  grunt.log.writeln '(i) Atom version is ' + atomVersion
 
   grunt.initConfig
     particleDevApp:
       workDir: workDir
       atomVersion: atomVersion
-      particleDevVersion: particleDevVersion
       appName: appName
       buildDir: buildDir
-      isRelease: isRelease
 
   tasks = []
 
-  grunt.registerTask 'sleep', 'Sleeps for a moment', ->
-    done = @async()
-    setTimeout ->
-      done()
-    , 1000 * 60 # Minute
-
   if !grunt.option('keepAtomWorkDir')
     tasks = tasks.concat [
+      'get-particle-dev-version',
       'download-atom',
       'sleep',
       'patch-atom-version',
       'inject-packages',
       'bootstrap-atom',
-
-    ]
-    tasks.push('install-particle-dev') if not grunt.config.get('particleDevApp.isRelease')
-    tasks = tasks.concat [
+      'install-particle-dev',
       'copy-resources',
       'patch-code',
     ]
