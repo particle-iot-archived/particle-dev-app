@@ -22,8 +22,6 @@ module.exports = (grunt) ->
         if error
           throw error
 
-        fs.chmodSync path.join(workDir, 'script', 'set-version'), '755'
-
         fs.unlinkSync tarballPath
         done()
 

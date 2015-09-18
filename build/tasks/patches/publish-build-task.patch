@@ -1,6 +1,6 @@
---- publish-build-task.coffee.orig	2015-07-20 13:25:06.000000000 +0100
-+++ publish-build-task.coffee	2015-07-20 15:31:03.000000000 +0100
-@@ -62,13 +62,11 @@
+--- dist/atom-work-dir/build/tasks/publish-build-task.coffee.orig	2015-09-18 19:04:34.000000000 +0100
++++ dist/atom-work-dir/build/tasks/publish-build-task.coffee	2015-09-18 19:48:44.000000000 +0100
+@@ -70,13 +70,11 @@
    switch process.platform
      when 'darwin'
        [
@@ -17,41 +17,41 @@
          cp path.join(buildDir, 'installer', squirrelAsset), path.join(buildDir, squirrelAsset)
          assets.push({assetName: squirrelAsset, sourcePath: assetName})
        assets
-@@ -79,8 +77,8 @@
+@@ -87,8 +85,8 @@
          arch = 'amd64'
-
+ 
        # Check for a Debian build
 -      sourcePath = "#{buildDir}/atom-#{version}-#{arch}.deb"
 -      assetName = "atom-#{arch}.deb"
 +      sourcePath = "#{buildDir}/particle-dev-#{version}-#{arch}.deb"
 +      assetName = "particle-dev-#{arch}.deb"
-
+ 
        # Check for a Fedora build
        unless fs.isFileSync(sourcePath)
-@@ -90,7 +88,7 @@
+@@ -98,7 +96,7 @@
            arch = 'i386'
          else
            arch = 'x86_64'
 -        assetName = "atom.#{arch}.rpm"
 +        assetName = "particle-dev.#{arch}.rpm"
-
+ 
        cp sourcePath, path.join(buildDir, assetName)
-
-@@ -121,10 +119,10 @@
+ 
+@@ -129,10 +127,10 @@
    async.parallel(tasks, callback)
-
- getAtomDraftRelease = (callback) ->
+ 
+ getAtomDraftRelease = (isPrerelease, callback) ->
 -  atomRepo = new GitHub({repo: 'atom/atom', token})
 +  atomRepo = new GitHub({repo: 'spark/particle-dev-app', token})
-   atomRepo.getReleases (error, releases=[]) ->
+   atomRepo.getReleases {prerelease: isPrerelease}, (error, releases=[]) ->
      if error?
 -      logError('Fetching atom/atom releases failed', error, releases)
 +      logError('Fetching spark/particle-dev-app releases failed', error, releases)
        callback(error)
      else
        [firstDraft] = releases.filter ({draft}) -> draft
-@@ -147,7 +145,7 @@
- createAtomDraftRelease = (callback) ->
+@@ -155,7 +153,7 @@
+ createAtomDraftRelease = (isPrerelease, callback) ->
    {version} = require('../../package.json')
    options =
 -    uri: 'https://api.github.com/repos/atom/atom/releases'
@@ -59,8 +59,8 @@
      method: 'POST'
      headers: defaultHeaders
      json:
-@@ -162,7 +160,7 @@
-
+@@ -171,7 +169,7 @@
+ 
    request options, (error, response, body='') ->
      if error? or response.statusCode isnt 201
 -      logError("Creating atom/atom draft release failed", error, body)

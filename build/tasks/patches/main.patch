@@ -1,9 +1,18 @@
---- main.coffee.orig	2015-04-28 13:23:05.000000000 +0100
-+++ main.coffee	2015-04-28 13:23:36.000000000 +0100
-@@ -69,7 +69,7 @@
+--- dist/atom-work-dir/src/browser/main.coffee.orig	2015-09-18 19:04:34.000000000 +0100
++++ dist/atom-work-dir/src/browser/main.coffee	2015-09-18 19:36:30.000000000 +0100
+@@ -17,7 +17,7 @@
+   return if handleStartupEventWithSquirrel()
+ 
+     # NB: This prevents Win10 from showing dupe items in the taskbar
+-    app.setAppUserModelId('com.squirrel.atom.atom')
++    app.setAppUserModelId('com.squirrel.particle.particledev')
+ 
+   args = parseCommandLine()
+ 
+@@ -59,7 +59,7 @@
+ 
  setupAtomHome = ->
    return if process.env.ATOM_HOME
-
 -  atomHome = path.join(app.getHomeDir(), '.atom')
 +  atomHome = path.join(app.getHomeDir(), '.particledev')
    try
