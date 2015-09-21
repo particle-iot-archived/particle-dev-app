@@ -11,6 +11,7 @@ module.exports = (grunt) ->
     workDir = grunt.config.get('particleDevApp.workDir')
 
     tarballUrl = 'https://github.com/atom/atom/archive/' + grunt.config.get('particleDevApp.atomVersion') + '.tar.gz'
+    grunt.log.writeln '(i) Downloading Atom from ' + tarballUrl
     tarballPath = path.join(grunt.config.get('particleDevApp.workDir'), 'atom.tar.gz')
     r = request(tarballUrl)
     r.on 'end', ->
