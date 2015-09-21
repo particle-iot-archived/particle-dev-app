@@ -19,17 +19,6 @@ setupDirs = ->
     fs.removeSync(workDir)
   fs.ensureDirSync(workDir)
 
-getAtomVersion = ->
-  # Get Atom Version from .atomrc
-  atomrc = fs.readFileSync(path.join(__dirname, '..', '.atomrc')).toString()
-  lines = atomrc.split "\n"
-  atomVersion = null
-  for line in lines
-    [key, value] = line.split '='
-    if key.indexOf('ATOM_VERSION') > 0
-      atomVersion = _s.trim(value)
-  atomVersion
-
 module.exports = (grunt) ->
   _grunt = grunt
   grunt.loadTasks('tasks')
@@ -39,7 +28,7 @@ module.exports = (grunt) ->
   setupDirs()
 
   # Get Atom Version from .atomrc
-  atomVersion = getAtomVersion()
+  atomVersion = process.env.ATOM_VERSION
   grunt.log.writeln '(i) Atom version is ' + atomVersion
 
   grunt.initConfig
