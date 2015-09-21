@@ -17,8 +17,8 @@ module.exports = (grunt) ->
     grunt.loadTasks '.'
 
     tasks = [
-      'download-atom-shell',
-      'download-atom-shell-chromedriver',
+      'download-electron',
+      'download-electron-chromedriver',
       'build',
       'set-version',
       'check-licenses',
