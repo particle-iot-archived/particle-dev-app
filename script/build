@@ -11,7 +11,7 @@ console.log('Bootstrapping build...');
 cp.safeSpawn('npm' + binSuffix, ['install'], function(){
 	process.chdir(path.dirname(__dirname));
 	var gruntPath = path.join('build', 'node_modules', '.bin', 'grunt') + binSuffix;
-	var args = ['--gruntfile', path.resolve('build', 'Gruntfile.coffee')];
+	var args = ['--gruntfile', path.resolve('build', 'Gruntfile.coffee'), '--force'];
 	args = args.concat(process.argv.slice(2));
 	console.log('Building using ' + gruntPath);
 	cp.safeSpawn(gruntPath, args, process.exit);
