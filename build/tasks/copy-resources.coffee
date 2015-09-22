@@ -18,3 +18,4 @@ module.exports = (grunt) ->
       copyResource 'particle-dev.icns', 'resources/mac/atom.icns'
     else if process.platform is 'win32'
       copyResource 'particle-dev.ico', 'resources/win/atom.ico'
+      copyResource 'loading.gif', 'resources/win/loading.gif'
