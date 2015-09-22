@@ -1,6 +1,6 @@
---- atom-Info.old.plist	2014-12-15 11:20:26.000000000 +0100
-+++ atom-Info.plist	2014-12-15 11:34:49.000000000 +0100
-@@ -7,11 +7,11 @@
+--- atom-Info.plist.orig	2015-09-21 07:21:49.000000000 -0700
++++ atom-Info.plist	2015-09-22 04:52:41.000000000 -0700
+@@ -7,7 +7,7 @@
  	<key>CFBundleIconFile</key>
  	<string>atom.icns</string>
  	<key>CFBundleIdentifier</key>
@@ -9,11 +9,6 @@
  	<key>CFBundleInfoDictionaryVersion</key>
  	<string>6.0</string>
  	<key>CFBundleName</key>
--	<string>Atom</string>
-+	<string>Particle Dev</string>
- 	<key>CFBundlePackageType</key>
- 	<string>APPL</string>
- 	<key>CFBundleDevelopmentRegion</key>
 @@ -54,109 +54,6 @@
  		<dict>
  			<key>CFBundleTypeExtensions</key>
