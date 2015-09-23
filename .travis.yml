@@ -8,6 +8,7 @@ notifications:
 env:
   global:
     - NODE_VERSION=0.12
+    - JANKY_BRANCH=stable
 
 addons:
   apt:
@@ -25,7 +26,6 @@ install:
 
 before_script:
   - ./script/add-key
-  - export JANKY_BRANCH=stable
   - export JANKY_SHA1=`git rev-parse --short HEAD`
   - source .atomrc
 
