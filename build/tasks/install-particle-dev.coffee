@@ -7,7 +7,7 @@ _s = require 'underscore.string'
 
 workDir = null
 
-installDependencies = (done) ->
+installDependencies = (particleDevPath, done) ->
   # Build serialport
   packageJson = path.join(workDir, 'package.json')
   packages = JSON.parse(fs.readFileSync(packageJson))
@@ -58,6 +58,6 @@ module.exports = (grunt) ->
         fs.unlinkSync tarballPath
         fs.removeSync path.join(particleDevPath, 'docs')
 
-        installDependencies done
+        installDependencies particleDevPath, done
 
     r.pipe(fs.createWriteStream(tarballPath))
