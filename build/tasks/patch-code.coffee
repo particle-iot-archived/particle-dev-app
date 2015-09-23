@@ -39,20 +39,21 @@ module.exports = (grunt) ->
       pathFile 'atom.patch', 'src/atom.coffee', ->
         pathFile 'main.patch', 'src/browser/main.coffee', ->
           pathFile 'auto-update-manager.patch', 'src/browser/auto-update-manager.coffee', ->
-            pathFile 'atom-window.patch', 'src/browser/atom-window.coffee', ->
-              pathFile 'workspace.patch', 'src/workspace.coffee', ->
-                pathFile 'Gruntfile.patch', 'build/Gruntfile.coffee', ->
-                  pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee', ->
-                    pathFile 'publish-build-task.patch', 'build/tasks/publish-build-task.coffee', ->
-                      pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee', ->
-                        pathFile 'set-version.patch', 'script/set-version', ->
-                          if process.platform is 'darwin'
-                            pathFile 'atom-Info.patch', 'resources/mac/atom-Info.plist', ->
-                              pathFile 'darwin.patch', 'menus/darwin.cson', ->
+            pathFile 'application-menu.patch', 'src/browser/application-menu.coffee', ->
+              pathFile 'atom-window.patch', 'src/browser/atom-window.coffee', ->
+                pathFile 'workspace.patch', 'src/workspace.coffee', ->
+                  pathFile 'Gruntfile.patch', 'build/Gruntfile.coffee', ->
+                    pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee', ->
+                      pathFile 'publish-build-task.patch', 'build/tasks/publish-build-task.coffee', ->
+                        pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee', ->
+                          pathFile 'set-version.patch', 'script/set-version', ->
+                            if process.platform is 'darwin'
+                              pathFile 'atom-Info.patch', 'resources/mac/atom-Info.plist', ->
+                                pathFile 'darwin.patch', 'menus/darwin.cson', ->
+                                  done()
+                            else if process.platform is 'win32'
+                              pathFile 'win32.patch', 'menus/win32.cson', ->
                                 done()
-                          else if process.platform is 'win32'
-                            pathFile 'win32.patch', 'menus/win32.cson', ->
-                              done()
-                          else
-                            pathFile 'linux.patch', 'menus/linux.cson', ->
-                              done()
+                            else
+                              pathFile 'linux.patch', 'menus/linux.cson', ->
+                                done()
