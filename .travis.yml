@@ -1,19 +1,41 @@
-language: objective-c
+compiler: clang
+sudo: false
+
 notifications:
   email:
     on_success: never
     on_failure: change
+env:
+  global:
+    - NODE_VERSION=0.12
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - git
+    - libgnome-keyring-dev
+    - fakeroot
+
+install:
+  - git clone https://github.com/creationix/nvm.git /tmp/.nvm
+  - source /tmp/.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+
 before_script:
-- ./script/add-key
-- export JANKY_BRANCH=stable
-- export JANKY_SHA1=`git rev-parse --short HEAD`
-- source .atomrc
+  - ./script/add-key
+  - export JANKY_BRANCH=stable
+  - export JANKY_SHA1=`git rev-parse --short HEAD`
+  - source .atomrc
+
 script:
-- ./script/build
-# - ./script/run-ci-specs
+  - ./script/build
+  # - ./script/run-ci-specs
+
 after_script: ./script/remove-key
+
 cache:
   directories:
     - build/node_modules
     - dist/atom-work-dir/node_modules
-sudo: false
