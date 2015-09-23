@@ -1,6 +1,9 @@
 compiler: clang
 sudo: false
 
+os:
+  - osx
+
 notifications:
   email:
     on_success: never
