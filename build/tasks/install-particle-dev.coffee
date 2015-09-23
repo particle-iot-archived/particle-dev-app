@@ -35,7 +35,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'install-particle-dev', 'Installs Particle Dev package', ->
     done = @async()
 
-    if not grunt.config.get('particleDevApp.isRelease')
+    if grunt.config.get('particleDevApp.isRelease')
       return done()
 
     workDir = grunt.config.get('particleDevApp.workDir')
