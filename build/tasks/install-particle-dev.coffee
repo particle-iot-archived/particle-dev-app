@@ -6,6 +6,7 @@ cp = require '../../script/utils/child-process-wrapper.js'
 _s = require 'underscore.string'
 
 workDir = null
+_grunt = null
 
 installDependencies = (particleDevPath, done) ->
   # Build serialport
@@ -24,13 +25,14 @@ installDependencies = (particleDevPath, done) ->
   else
     command = '../../apm/node_modules/atom-package-manager/bin/apm'
 
-  verbose = if !grunt.option('verbose') then '' else ' --verbose'
+  verbose = if !_grunt.option('verbose') then '' else ' --verbose'
   cp.safeExec command + ' install' + verbose, options, ->
     injectPackage 'spark-dev', packages.version
     done()
 
 module.exports = (grunt) ->
   {injectPackage, injectDependency, copyExcluding} = require('./task-helpers')(grunt)
+  _grunt = grunt
 
   grunt.registerTask 'install-particle-dev', 'Installs Particle Dev package', ->
     done = @async()
