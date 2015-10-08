@@ -14,7 +14,7 @@ installDependencies = (particleDevPath, done) ->
   packages = JSON.parse(fs.readFileSync(packageJson))
   process.chdir(particleDevPath);
   env = process.env
-  env['ATOM_NODE_VERSION'] = packages.atomShellVersion
+  env['ATOM_NODE_VERSION'] = packages.electronVersion
   env['ATOM_HOME'] = if process.platform is 'win32' then process.env.USERPROFILE else process.env.HOME
   options = {
     env: env
