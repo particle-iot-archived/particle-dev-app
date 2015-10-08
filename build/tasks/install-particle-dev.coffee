@@ -7,6 +7,8 @@ _s = require 'underscore.string'
 
 workDir = null
 _grunt = null
+injectPackage = null
+
 
 installDependencies = (particleDevPath, done) ->
   # Build serialport
@@ -31,7 +33,7 @@ installDependencies = (particleDevPath, done) ->
     done()
 
 module.exports = (grunt) ->
-  {injectPackage, injectDependency, copyExcluding} = require('./task-helpers')(grunt)
+  {injectPackage, copyExcluding} = require('./task-helpers')(grunt)
   _grunt = grunt
 
   grunt.registerTask 'install-particle-dev', 'Installs Particle Dev package', ->
