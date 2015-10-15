@@ -1,15 +1,20 @@
---- dist/atom-work-dir/src/browser/main.coffee.orig	2015-09-18 19:04:34.000000000 +0100
-+++ dist/atom-work-dir/src/browser/main.coffee	2015-09-18 19:36:30.000000000 +0100
+--- dist/atom-work-dir/src/browser/main.coffee.orig	2015-10-15 12:25:45.000000000 +0100
++++ dist/atom-work-dir/src/browser/main.coffee	2015-10-15 12:43:34.000000000 +0100
 @@ -17,7 +17,7 @@
    return if handleStartupEventWithSquirrel()
  
-     # NB: This prevents Win10 from showing dupe items in the taskbar
--    app.setAppUserModelId('com.squirrel.atom.atom')
-+    app.setAppUserModelId('com.squirrel.particle.particledev')
+   # NB: This prevents Win10 from showing dupe items in the taskbar
+-  app.setAppUserModelId('com.squirrel.atom.atom')
++  app.setAppUserModelId('com.squirrel.particle.particledev')
  
    args = parseCommandLine()
  
-@@ -59,7 +59,7 @@
+@@ -55,11 +55,11 @@
+   SquirrelUpdate.handleStartupEvent(app, squirrelCommand)
+ 
+ setupCrashReporter = ->
+-  crashReporter.start(productName: 'Atom', companyName: 'GitHub')
++  crashReporter.start(productName: 'ParticleDev', companyName: 'Particle')
  
  setupAtomHome = ->
    return if process.env.ATOM_HOME

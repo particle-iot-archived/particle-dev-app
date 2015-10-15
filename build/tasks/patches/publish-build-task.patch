@@ -1,6 +1,6 @@
---- dist/atom-work-dir/build/tasks/publish-build-task.coffee.orig	2015-09-18 19:04:34.000000000 +0100
-+++ dist/atom-work-dir/build/tasks/publish-build-task.coffee	2015-09-18 19:48:44.000000000 +0100
-@@ -70,13 +70,11 @@
+--- dist/atom-work-dir/build/tasks/publish-build-task.coffee.orig	2015-10-15 12:25:44.000000000 +0100
++++ dist/atom-work-dir/build/tasks/publish-build-task.coffee	2015-10-15 13:05:14.000000000 +0100
+@@ -71,13 +71,11 @@
    switch process.platform
      when 'darwin'
        [
@@ -17,7 +17,7 @@
          cp path.join(buildDir, 'installer', squirrelAsset), path.join(buildDir, squirrelAsset)
          assets.push({assetName: squirrelAsset, sourcePath: assetName})
        assets
-@@ -87,8 +85,8 @@
+@@ -88,8 +86,8 @@
          arch = 'amd64'
  
        # Check for a Debian build
@@ -28,7 +28,7 @@
  
        # Check for a Fedora build
        unless fs.isFileSync(sourcePath)
-@@ -98,7 +96,7 @@
+@@ -99,7 +97,7 @@
            arch = 'i386'
          else
            arch = 'x86_64'
@@ -37,10 +37,10 @@
  
        cp sourcePath, path.join(buildDir, assetName)
  
-@@ -129,10 +127,10 @@
+@@ -130,10 +128,10 @@
    async.parallel(tasks, callback)
  
- getAtomDraftRelease = (isPrerelease, callback) ->
+ getAtomDraftRelease = (isPrerelease, branchName, callback) ->
 -  atomRepo = new GitHub({repo: 'atom/atom', token})
 +  atomRepo = new GitHub({repo: 'spark/particle-dev-app', token})
    atomRepo.getReleases {prerelease: isPrerelease}, (error, releases=[]) ->
@@ -50,8 +50,8 @@
        callback(error)
      else
        [firstDraft] = releases.filter ({draft}) -> draft
-@@ -155,7 +153,7 @@
- createAtomDraftRelease = (isPrerelease, callback) ->
+@@ -156,7 +154,7 @@
+ createAtomDraftRelease = (isPrerelease, branchName, callback) ->
    {version} = require('../../package.json')
    options =
 -    uri: 'https://api.github.com/repos/atom/atom/releases'
@@ -59,7 +59,7 @@
      method: 'POST'
      headers: defaultHeaders
      json:
-@@ -171,7 +169,7 @@
+@@ -173,7 +171,7 @@
  
    request options, (error, response, body='') ->
      if error? or response.statusCode isnt 201
