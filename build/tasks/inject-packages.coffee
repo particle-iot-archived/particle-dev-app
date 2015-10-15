@@ -16,6 +16,7 @@ module.exports = (grunt) ->
     injectPackage 'tool-bar', '0.1.9'
     injectPackage 'tool-bar-main', '0.0.8'
     injectPackage 'monokai', '0.18.0'
+    injectPackage 'console-panel', '0.2.0'
 
     if grunt.config.get 'particleDevApp.isRelease'
       injectPackage 'spark-dev', grunt.config.get('particleDevApp.particleDevVersion')
