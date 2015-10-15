@@ -49,10 +49,11 @@ module.exports = (grunt) ->
       'bootstrap-atom',
       'install-particle-dev',
       'copy-resources',
-      'patch-code',
+
     ]
 
   tasks = tasks.concat [
+    'patch-code',
     'build-app',
   ]
 

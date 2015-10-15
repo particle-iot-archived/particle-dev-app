@@ -1,0 +1,12 @@
+--- dist/atom-work-dir/build/tasks/license-overrides.coffee.orig	2015-10-15 13:44:43.000000000 +0100
++++ dist/atom-work-dir/build/tasks/license-overrides.coffee	2015-10-15 13:50:00.000000000 +0100
+@@ -82,3 +82,9 @@
+   'core-js@0.4.10':
+     license: 'MIT'
+     source: 'http://rock.mit-license.org linked in source files and bower.json says MIT'
++  'rc@1.1.2':
++    license: 'MIT'
++    source: 'LICENSE.MIT'
++  'spdx-exceptions@1.0.3':
++    license: 'CC-BY-3.0'
++    source: 'package.json in repository'

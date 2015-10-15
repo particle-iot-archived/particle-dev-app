@@ -63,6 +63,8 @@ module.exports = (grunt) ->
       ->
         pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee'
       ->
+        pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
+      ->
         pathFile 'set-version.patch', 'script/set-version'
       ->
         if process.platform is 'darwin'
