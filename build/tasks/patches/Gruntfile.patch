@@ -29,7 +29,7 @@
 +        iconUrl: 'https://raw.githubusercontent.com/spark/spark-dev/master/build/resources/sparkdev.ico'
          setupIcon: path.resolve(__dirname, '..', 'resources', 'win', 'atom.ico')
 -        remoteReleases: 'https://atom.io/api/updates'
-+        remoteReleases: 'https://github.com/spark/spark-dev'
++        remoteReleases: 'https://github.com/spark/particle-dev-app'
 +        productName: 'ParticleDev'
 +        name: 'particle-dev'
 +        exe: 'atom.exe'
