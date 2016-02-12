@@ -1,35 +1,26 @@
---- Gruntfile.coffee.orig	2015-08-07 16:32:41.000000000 +0100
-+++ Gruntfile.coffee	2015-08-07 16:48:22.000000000 +0100
-@@ -36,7 +36,7 @@
+--- Gruntfile.coffee.orig	2016-02-11 09:38:16.000000000 -0800
++++ Gruntfile.coffee	2016-02-11 09:46:11.000000000 -0800
+@@ -53,7 +53,7 @@
+   channel ?= 'dev'
 
-   [major, minor, patch] = packageJson.version.split('.')
-   tmpDir = os.tmpdir()
--  appName = if process.platform is 'darwin' then 'Atom.app' else 'Atom'
-+  appName = if process.platform is 'darwin' then 'Particle Dev.app' else 'ParticleDev'
-   buildDir = grunt.option('build-dir') ? path.join(tmpDir, 'atom-build')
-   buildDir = path.resolve(buildDir)
-   installDir = grunt.option('install-dir')
-@@ -76,6 +76,8 @@
-       ]
-       dest: appDir
-       ext: '.js'
-+      options:
-+        sourceMap: true
+   metadata = packageJson
+-  appName = packageJson.productName
++  appName = if process.platform is 'darwin' then 'Particle Dev' else 'ParticleDev'
+   appFileName = packageJson.name
+   apmFileName = 'apm'
 
-   lessConfig =
-     options:
-@@ -215,11 +217,14 @@
+@@ -266,11 +266,14 @@
        installer:
          appDirectory: shellAppDir
          outputDirectory: path.join(buildDir, 'installer')
 -        authors: 'GitHub Inc.'
 +        authors: 'Particle Industries, Inc.'
          loadingGif: path.resolve(__dirname, '..', 'resources', 'win', 'loading.gif')
--        iconUrl: 'https://raw.githubusercontent.com/atom/atom/master/resources/win/atom.ico'
-+        iconUrl: 'https://raw.githubusercontent.com/spark/spark-dev/master/build/resources/sparkdev.ico'
-         setupIcon: path.resolve(__dirname, '..', 'resources', 'win', 'atom.ico')
--        remoteReleases: 'https://atom.io/api/updates'
-+        remoteReleases: 'https://github.com/spark/particle-dev-app'
+-        iconUrl: "https://raw.githubusercontent.com/atom/atom/master/resources/app-icons/#{channel}/atom.ico"
++        iconUrl: "https://raw.githubusercontent.com/spark/spark-dev/master/build/resources/sparkdev.ico"
+         setupIcon: path.resolve(__dirname, '..', 'resources', 'app-icons', channel, 'atom.ico')
+-        remoteReleases: "https://atom.io/api/updates?version=#{metadata.version}"
++        remoteReleases: "https://github.com/spark/particle-dev-app"
 +        productName: 'ParticleDev'
 +        name: 'particle-dev'
 +        exe: 'atom.exe'

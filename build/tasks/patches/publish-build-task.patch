@@ -1,45 +1,34 @@
---- dist/atom-work-dir/build/tasks/publish-build-task.coffee.orig	2015-10-15 12:25:44.000000000 +0100
-+++ dist/atom-work-dir/build/tasks/publish-build-task.coffee	2015-10-15 13:05:14.000000000 +0100
-@@ -71,13 +71,11 @@
+--- publish-build-task.coffee.orig	2016-02-11 08:45:44.000000000 -0800
++++ publish-build-task.coffee	2016-02-11 09:24:43.000000000 -0800
+@@ -73,13 +73,11 @@
    switch process.platform
      when 'darwin'
        [
--        {assetName: 'atom-mac.zip', sourcePath: 'Atom.app'}
+-        {assetName: 'atom-mac.zip', sourcePath: appName}
 -        {assetName: 'atom-mac-symbols.zip', sourcePath: 'Atom.breakpad.syms'}
 -        {assetName: 'atom-api.json', sourcePath: 'atom-api.json'}
 +        {assetName: "particle-dev-mac-#{version}.zip", sourcePath: '"Particle Dev.app"'}
        ]
      when 'win32'
--      assets = [{assetName: 'atom-windows.zip', sourcePath: 'Atom'}]
+-      assets = [{assetName: 'atom-windows.zip', sourcePath: appName}]
 -      for squirrelAsset in ['AtomSetup.exe', 'RELEASES', "atom-#{version}-full.nupkg", "atom-#{version}-delta.nupkg"]
 +      assets = [{assetName: "particle-dev-windows-#{version}.zip", sourcePath: 'ParticleDev'}]
 +      for squirrelAsset in ['ParticleDevSetup.exe', 'RELEASES', "particle-dev-#{version}-full.nupkg", "particle-dev-#{version}-delta.nupkg"]
          cp path.join(buildDir, 'installer', squirrelAsset), path.join(buildDir, squirrelAsset)
          assets.push({assetName: squirrelAsset, sourcePath: assetName})
        assets
-@@ -88,8 +86,8 @@
-         arch = 'amd64'
- 
-       # Check for a Debian build
--      sourcePath = "#{buildDir}/atom-#{version}-#{arch}.deb"
--      assetName = "atom-#{arch}.deb"
-+      sourcePath = "#{buildDir}/particle-dev-#{version}-#{arch}.deb"
-+      assetName = "particle-dev-#{arch}.deb"
- 
-       # Check for a Fedora build
-       unless fs.isFileSync(sourcePath)
-@@ -99,7 +97,7 @@
+@@ -101,7 +99,7 @@
            arch = 'i386'
          else
            arch = 'x86_64'
 -        assetName = "atom.#{arch}.rpm"
 +        assetName = "particle-dev.#{arch}.rpm"
- 
+
        cp sourcePath, path.join(buildDir, assetName)
- 
-@@ -130,10 +128,10 @@
+
+@@ -132,10 +130,10 @@
    async.parallel(tasks, callback)
- 
+
  getAtomDraftRelease = (isPrerelease, branchName, callback) ->
 -  atomRepo = new GitHub({repo: 'atom/atom', token})
 +  atomRepo = new GitHub({repo: 'spark/particle-dev-app', token})
@@ -50,7 +39,7 @@
        callback(error)
      else
        [firstDraft] = releases.filter ({draft}) -> draft
-@@ -156,7 +154,7 @@
+@@ -158,7 +156,7 @@
  createAtomDraftRelease = (isPrerelease, branchName, callback) ->
    {version} = require('../../package.json')
    options =
@@ -59,8 +48,8 @@
      method: 'POST'
      headers: defaultHeaders
      json:
-@@ -173,7 +171,7 @@
- 
+@@ -175,7 +173,7 @@
+
    request options, (error, response, body='') ->
      if error? or response.statusCode isnt 201
 -      logError("Creating atom/atom draft release failed", error, body)

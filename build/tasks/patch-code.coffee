@@ -13,10 +13,14 @@ pathFile = (patchFile, targetFile) ->
   command = 'patch -i ' + patchFile + ' ' + targetFile
   result = cp.exec command, (error, stdout, stderr) ->
     if error
-      console.log patchFile, 'failed'
-      dfd.reject error
+      if stdout.indexOf('Reversed (or previously applied) patch detected') > -1
+        console.log '⤵️ ', patchFile, 'skipped'
+        dfd.resolve()
+      else
+        console.log '❌ ', patchFile, 'failed'
+        dfd.reject error
     else
-      console.log patchFile, 'applied'
+      console.log '✅ ', patchFile, 'applied'
       dfd.resolve()
   dfd.promise
 
@@ -43,7 +47,7 @@ module.exports = (grunt) ->
       ->
         file = path.join workDir, 'src/browser/atom-application.coffee'
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
-        pathFile 'atom.patch', 'src/atom.coffee'
+        pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
         pathFile 'main.patch', 'src/browser/main.coffee'
       ->
@@ -64,8 +68,6 @@ module.exports = (grunt) ->
         pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee'
       ->
         pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
-      ->
-        pathFile 'set-version.patch', 'script/set-version'
       ->
         if process.platform is 'darwin'
           return parallel [

@@ -1,5 +1,5 @@
---- darwin.cson.orig	2015-07-20 13:25:42.000000000 +0100
-+++ darwin.cson	2015-07-20 13:42:27.000000000 +0100
+--- darwin.cson.orig	2016-02-11 07:39:59.000000000 -0800
++++ darwin.cson	2016-02-11 08:05:56.000000000 -0800
 @@ -1,8 +1,8 @@
  'menu': [
    {
@@ -13,18 +13,17 @@
        { label: 'Restart and Install Update', command: 'application:install-update', visible: false}
 @@ -21,7 +21,7 @@
        { type: 'separator' }
-       { label: 'Services', submenu: [] }
+       { label: 'Services', role: 'services', submenu: [] }
        { type: 'separator' }
 -      { label: 'Hide Atom', command: 'application:hide' }
 +      { label: 'Hide Particle Dev', command: 'application:hide' }
        { label: 'Hide Others', command: 'application:hide-other-applications' }
        { label: 'Show All', command: 'application:unhide-all-applications' }
        { type: 'separator' }
-@@ -164,8 +164,6 @@
-         label: 'Developer'
+@@ -138,7 +138,6 @@
          submenu: [
            { label: 'Open In Dev Mode…', command: 'application:open-dev' }
--          { label: 'Run Atom Specs', command: 'application:run-all-specs' }
+           { label: 'Reload Window', command: 'window:reload' }
 -          { label: 'Run Package Specs', command: 'window:run-package-specs' }
            { label: 'Toggle Developer Tools', command: 'window:toggle-dev-tools' }
          ]

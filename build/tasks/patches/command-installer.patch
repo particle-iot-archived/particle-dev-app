@@ -1,0 +1,28 @@
+--- command-installer.coffee.orig	2016-02-12 05:21:35.000000000 -0800
++++ command-installer.coffee	2016-02-12 05:22:29.000000000 -0800
+@@ -50,22 +50,16 @@
+           else
+             @applicationDelegate.confirm
+               message: "Commands installed."
+-              detailedMessage: "The shell commands `atom` and `apm` are installed."
++              detailedMessage: "The shell commands `particledev` and `particledev-apm` are installed."
+
+   installAtomCommand: (askForPrivilege, callback) ->
+-    programName = if @appVersion.includes("beta")
+-      "atom-beta"
+-    else
+-      "atom"
++    programName = "particledev"
+
+     commandPath = path.join(@getResourcesDirectory(), 'app', 'atom.sh')
+     @createSymlink commandPath, programName, askForPrivilege, callback
+
+   installApmCommand: (askForPrivilege, callback) ->
+-    programName = if @appVersion.includes("beta")
+-      "apm-beta"
+-    else
+-      "apm"
++    programName = "particledev-apm"
+
+     commandPath = path.join(@getResourcesDirectory(), 'app', 'apm', 'node_modules', '.bin', 'apm')
+     @createSymlink commandPath, programName, askForPrivilege, callback

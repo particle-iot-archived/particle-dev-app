@@ -1,50 +1,13 @@
---- atom-application.coffee.orig	2015-09-22 05:48:42.000000000 -0700
-+++ atom-application.coffee	2015-09-23 06:21:04.000000000 -0700
-@@ -21,9 +21,9 @@
- 
- DefaultSocketPath =
-   if process.platform is 'win32'
--    '\\\\.\\pipe\\atom-sock'
-+    '\\\\.\\pipe\\particledev-sock'
-   else
--    path.join(os.tmpdir(), "atom-#{process.env.USER}.sock")
-+    path.join(os.tmpdir(), "particledev-#{process.env.USER}.sock")
- 
- # The application's singleton class.
- #
-@@ -175,13 +175,13 @@
-       atomWindow ?= @focusedWindow()
-       atomWindow?.browserWindow.inspectElement(x, y)
- 
--    @on 'application:open-documentation', -> shell.openExternal('https://atom.io/docs/latest/?app')
--    @on 'application:open-discussions', -> shell.openExternal('https://discuss.atom.io')
-+    @on 'application:open-documentation', -> shell.openExternal('https://docs.particle.io/guide/tools-and-features/dev/')
-+    @on 'application:open-discussions', -> shell.openExternal('https://community.particle.io/')
-     @on 'application:open-roadmap', -> shell.openExternal('https://atom.io/roadmap?app')
-     @on 'application:open-faq', -> shell.openExternal('https://atom.io/faq')
--    @on 'application:open-terms-of-use', -> shell.openExternal('https://atom.io/terms')
--    @on 'application:report-issue', -> shell.openExternal('https://github.com/atom/atom/blob/master/CONTRIBUTING.md#submitting-issues')
--    @on 'application:search-issues', -> shell.openExternal('https://github.com/issues?q=+is%3Aissue+user%3Aatom')
-+    @on 'application:open-terms-of-use', -> shell.openExternal('https://www.particle.io/tos')
-+    @on 'application:report-issue', -> shell.openExternal('https://github.com/spark/particle-dev-app/issues/new')
-+    @on 'application:search-issues', -> shell.openExternal('https://github.com/spark/particle-dev-app/issues')
- 
-     @on 'application:install-update', =>
-       @quitting = true
-@@ -202,11 +202,11 @@
- 
-     @openPathOnEvent('application:about', 'atom://about')
-     @openPathOnEvent('application:show-settings', 'atom://config')
--    @openPathOnEvent('application:open-your-config', 'atom://.atom/config')
--    @openPathOnEvent('application:open-your-init-script', 'atom://.atom/init-script')
--    @openPathOnEvent('application:open-your-keymap', 'atom://.atom/keymap')
--    @openPathOnEvent('application:open-your-snippets', 'atom://.atom/snippets')
--    @openPathOnEvent('application:open-your-stylesheet', 'atom://.atom/stylesheet')
-+    @openPathOnEvent('application:open-your-config', 'atom://.particledev/config')
-+    @openPathOnEvent('application:open-your-init-script', 'atom://.particledev/init-script')
-+    @openPathOnEvent('application:open-your-keymap', 'atom://.particledev/keymap')
-+    @openPathOnEvent('application:open-your-snippets', 'atom://.particledev/snippets')
-+    @openPathOnEvent('application:open-your-stylesheet', 'atom://.particledev/stylesheet')
-     @openPathOnEvent('application:open-license', path.join(process.resourcesPath, 'LICENSE.md'))
- 
-     app.on 'before-quit', =>
+--- atom-application.coffee.orig	2016-02-12 05:17:59.000000000 -0800
++++ atom-application.coffee	2016-02-12 05:30:45.000000000 -0800
+@@ -34,9 +34,9 @@
+   @open: (options) ->
+     unless options.socketPath?
+       if process.platform is 'win32'
+-        options.socketPath = '\\\\.\\pipe\\atom-sock'
++        options.socketPath = '\\\\.\\pipe\\particledev-sock'
+       else
+-        options.socketPath = path.join(os.tmpdir(), "atom-#{options.version}-#{process.env.USER}.sock")
++        options.socketPath = path.join(os.tmpdir(), "particledev-#{options.version}-#{process.env.USER}.sock")
+
+     createAtomApplication = -> new AtomApplication(options)
