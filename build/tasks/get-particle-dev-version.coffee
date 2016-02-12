@@ -20,9 +20,11 @@ getParticleDevVersion = (cb) ->
       version = JSON.parse(body).version
 
       # Fetch latest commit
+      token = process.env.ATOM_ACCESS_TOKEN
       options =
         url: "https://api.github.com/repos/#{repo}/commits?sha=master"
         headers:
+          Authorization: "token #{token}"
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36'
 
       _grunt.log.writeln "Fetching version from #{options.url}"
