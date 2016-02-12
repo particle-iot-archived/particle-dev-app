@@ -25,6 +25,7 @@ getParticleDevVersion = (cb) ->
         headers:
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36'
 
+      _grunt.log.writeln "Fetching version from #{options.url}"
       request options, (error, response, body) ->
         if !!error
           _grunt.fail.fatal '(e) Error fetching commits'
