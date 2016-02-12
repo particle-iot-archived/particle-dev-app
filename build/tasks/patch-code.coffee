@@ -3,7 +3,9 @@ path = require 'path'
 cp = require 'child_process'
 whenjs = require 'when'
 parallel = require 'when/parallel'
+
 workDir = null
+rollbackFile = null
 
 pathFile = (patchFile, targetFile) ->
   dfd = whenjs.defer()
@@ -13,14 +15,13 @@ pathFile = (patchFile, targetFile) ->
   command = 'patch -i ' + patchFile + ' ' + targetFile
   result = cp.exec command, (error, stdout, stderr) ->
     if error
-      if stdout.indexOf('Reversed (or previously applied) patch detected') > -1
-        console.log '⤵️ ', patchFile, 'skipped'
-        dfd.resolve()
-      else
-        console.log '❌ ', patchFile, 'failed'
-        dfd.reject error
+      console.log '❌ ', patchFile, 'failed'
+      console.error '\x1b[31m' + "\t" + stdout.replace(/\n/g, "\n\t") + '\x1b[0m'
+      dfd.reject error
     else
       console.log '✅ ', patchFile, 'applied'
+      rollbackFile.write "echo \"Rolling back #{targetFile}\"\n"
+      rollbackFile.write "mv #{targetFile}.orig #{targetFile}\n"
       dfd.resolve()
   dfd.promise
 
@@ -34,6 +35,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'patch-code', 'Patches Atom code', ->
     workDir = grunt.config.get('particleDevApp.workDir')
     particleDevVersion = grunt.config.get('particleDevApp.particleDevVersion')
+    rollbackFile = fs.createWriteStream(path.join(workDir, 'rollbackPatches.sh'))
+    rollbackFile.write "#!/bin/bash\n"
     done = @async()
 
     # Remove broken spec
@@ -83,6 +86,9 @@ module.exports = (grunt) ->
     ]
 
     patchPromise.then ->
+      rollbackFile.end()
       done()
     , (error) ->
-      process.exit error.code
+      rollbackFile.end()
+      done()
+      # process.exit error.code
