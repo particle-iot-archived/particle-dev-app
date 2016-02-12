@@ -15,7 +15,7 @@ module.exports = (grunt) ->
     copyResource 'config.cson', 'dot-atom/config.cson'
 
     if process.platform is 'darwin'
-      copyResource 'particle-dev.icns', 'resources/mac/atom.icns'
+      copyResource 'particle-dev.icns', 'resources/app-icons/stable/atom.icns'
     else if process.platform is 'win32'
-      copyResource 'particle-dev.ico', 'resources/win/atom.ico'
+      copyResource 'particle-dev.ico', 'resources/app-icons/stable/atom.ico'
       copyResource 'loading.gif', 'resources/win/loading.gif'
