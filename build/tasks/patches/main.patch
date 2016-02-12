@@ -1,25 +1,26 @@
---- dist/atom-work-dir/src/browser/main.coffee.orig	2015-10-15 12:25:45.000000000 +0100
-+++ dist/atom-work-dir/src/browser/main.coffee	2015-10-15 12:43:34.000000000 +0100
-@@ -17,7 +17,7 @@
+--- main.coffee.orig	2016-02-12 08:37:53.000000000 -0800
++++ main.coffee	2016-02-12 09:00:45.000000000 -0800
+@@ -18,7 +18,7 @@
    return if handleStartupEventWithSquirrel()
- 
+
    # NB: This prevents Win10 from showing dupe items in the taskbar
 -  app.setAppUserModelId('com.squirrel.atom.atom')
 +  app.setAppUserModelId('com.squirrel.particle.particledev')
- 
-   args = parseCommandLine()
- 
-@@ -55,11 +55,11 @@
+
+   addPathToOpen = (event, pathToOpen) ->
+     event.preventDefault()
+@@ -54,12 +54,12 @@
    SquirrelUpdate.handleStartupEvent(app, squirrelCommand)
- 
+
  setupCrashReporter = ->
 -  crashReporter.start(productName: 'Atom', companyName: 'GitHub')
 +  crashReporter.start(productName: 'ParticleDev', companyName: 'Particle')
- 
- setupAtomHome = ->
+
+ setupAtomHome = ({setPortable}) ->
    return if process.env.ATOM_HOME
+
 -  atomHome = path.join(app.getHomeDir(), '.atom')
 +  atomHome = path.join(app.getHomeDir(), '.particledev')
-   try
-     atomHome = fs.realpathSync(atomHome)
-   process.env.ATOM_HOME = atomHome
+   AtomPortable = require './atom-portable'
+
+   if setPortable and not AtomPortable.isPortableInstall(process.platform, process.env.ATOM_HOME, atomHome)
