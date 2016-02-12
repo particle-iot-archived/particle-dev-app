@@ -31,9 +31,7 @@ getParticleDevVersion = (cb) ->
       request options, (error, response, body) ->
         if !!error
           _grunt.fail.fatal '(e) Error fetching commits'
-        console.log '-->', body
-        console.log '-->', response
-        console.log '-->', error
+
         version = "#{version}-" + JSON.parse(body)[0].sha.substring(0, 7)
         cb version
 
