@@ -7,7 +7,7 @@
 -        {assetName: 'atom-mac.zip', sourcePath: appName}
 -        {assetName: 'atom-mac-symbols.zip', sourcePath: 'Atom.breakpad.syms'}
 -        {assetName: 'atom-api.json', sourcePath: 'atom-api.json'}
-+        {assetName: "particle-dev-mac-#{version}.zip", sourcePath: '"Particle Dev.app"'}
++        {assetName: "particle-dev-mac-#{version}.zip", sourcePath: 'Particle Dev.app'}
        ]
      when 'win32'
 -      assets = [{assetName: 'atom-windows.zip', sourcePath: appName}]
