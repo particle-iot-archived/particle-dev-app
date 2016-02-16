@@ -1,10 +1,9 @@
---- linux.cson.orig	2015-07-20 13:25:42.000000000 +0100
-+++ linux.cson	2015-07-20 13:44:11.000000000 +0100
-@@ -121,8 +121,6 @@
-         label: 'Developer'
+--- linux.cson.orig	2016-02-12 09:16:50.000000000 -0800
++++ linux.cson	2016-02-16 05:38:25.000000000 -0800
+@@ -121,7 +121,6 @@
          submenu: [
            { label: 'Open In &Dev Mode…', command: 'application:open-dev' }
--          { label: 'Run &Atom Specs', command: 'application:run-all-specs' }
+           { label: '&Reload Window', command: 'window:reload' }
 -          { label: 'Run Package &Specs', command: 'window:run-package-specs' }
            { label: 'Toggle Developer &Tools', command: 'window:toggle-dev-tools' }
          ]
