@@ -1,6 +1,6 @@
---- license-overrides.coffee.orig	2016-02-12 09:51:54.000000000 -0800
-+++ license-overrides.coffee	2016-02-12 09:48:36.000000000 -0800
-@@ -82,3 +82,12 @@
+--- license-overrides.coffee.orig	2016-03-10 16:57:54.000000000 +0000
++++ license-overrides.coffee	2016-03-10 17:01:20.000000000 +0000
+@@ -82,3 +82,15 @@
    'core-js@0.4.10':
      license: 'MIT'
      source: 'http://rock.mit-license.org linked in source files and bower.json says MIT'
@@ -13,3 +13,6 @@
 +  'json-schema@0.2.2':
 +    license: 'BSD'
 +    source: 'http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13'
++  'tweetnacl@0.14.1':
++    license: 'Public Domain'
++    source: 'https://raw.githubusercontent.com/dchest/tweetnacl-js/master/COPYING.txt'
