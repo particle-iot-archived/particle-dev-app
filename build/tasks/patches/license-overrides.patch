@@ -1,18 +1,9 @@
---- license-overrides.coffee.orig	2016-03-10 16:57:54.000000000 +0000
-+++ license-overrides.coffee	2016-03-10 17:01:20.000000000 +0000
-@@ -82,3 +82,15 @@
-   'core-js@0.4.10':
-     license: 'MIT'
-     source: 'http://rock.mit-license.org linked in source files and bower.json says MIT'
-+  'rc@1.1.2':
-+    license: 'MIT'
-+    source: 'LICENSE.MIT'
-+  'spdx-exceptions@1.0.3':
-+    license: 'Unlicense'
-+    source: 'Actually CC-BY-3.0 but it fails in legal-eagle'
-+  'json-schema@0.2.2':
-+    license: 'BSD'
-+    source: 'http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13'
+--- license-overrides.coffee.orig	2016-05-10 15:56:15.000000000 +0100
++++ license-overrides.coffee	2016-05-10 17:33:57.000000000 +0100
+@@ -341,3 +341,6 @@
+
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+     """
 +  'tweetnacl@0.14.1':
 +    license: 'Public Domain'
 +    source: 'https://raw.githubusercontent.com/dchest/tweetnacl-js/master/COPYING.txt'
