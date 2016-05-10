@@ -17,7 +17,7 @@
 +        authors: 'Particle Industries, Inc.'
          loadingGif: path.resolve(__dirname, '..', 'resources', 'win', 'loading.gif')
 -        iconUrl: "https://raw.githubusercontent.com/atom/atom/master/resources/app-icons/#{channel}/atom.ico"
-+        iconUrl: "https://raw.githubusercontent.com/spark/spark-dev/master/build/resources/sparkdev.ico"
++        iconUrl: "https://raw.githubusercontent.com/spark/particle-dev-app/master/build/resources/particle-dev.ico"
          setupIcon: path.resolve(__dirname, '..', 'resources', 'app-icons', channel, 'atom.ico')
 -        remoteReleases: "https://atom.io/api/updates?version=#{metadata.version}"
 +        remoteReleases: "https://github.com/spark/particle-dev-app"

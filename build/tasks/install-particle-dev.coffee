@@ -29,7 +29,7 @@ installDependencies = (particleDevPath, done) ->
 
   verbose = if !_grunt.option('verbose') then '' else ' --verbose'
   cp.safeExec command + ' install' + verbose, options, ->
-    injectPackage 'spark-dev', packages.version
+    injectPackage 'particle-dev', packages.version
     done()
 
 module.exports = (grunt) ->
@@ -43,11 +43,11 @@ module.exports = (grunt) ->
       return done()
 
     workDir = grunt.config.get('particleDevApp.workDir')
-    particleDevPath = path.join(workDir, 'node_modules', 'spark-dev')
+    particleDevPath = path.join(workDir, 'node_modules', 'particle-dev')
 
     # Download the release
-    tarballUrl = 'https://github.com/spark/spark-dev/archive/master.tar.gz'
-    tarballPath = path.join(workDir, 'sparkdev.tar.gz')
+    tarballUrl = 'https://github.com/spark/particle-dev/archive/master.tar.gz'
+    tarballPath = path.join(workDir, 'particledev.tar.gz')
 
     r = request(tarballUrl)
     r.on 'end', ->

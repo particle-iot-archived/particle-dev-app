@@ -12,7 +12,7 @@ getParticleDevVersion = (cb) ->
   else
     isRelease = false
     # Get the version from master
-    repo = 'spark/spark-dev'
+    repo = 'spark/particle-dev'
     url = "https://raw.githubusercontent.com/#{repo}/master/package.json"
     request url, (error, response, body) ->
       if !!error
