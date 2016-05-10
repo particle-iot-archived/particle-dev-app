@@ -22,7 +22,7 @@
 -        remoteReleases: "https://atom.io/api/updates?version=#{metadata.version}"
 +        remoteReleases: "https://github.com/spark/particle-dev-app"
 +        productName: 'ParticleDev'
-+        name: 'particle-dev'
++        name: 'particledev'
 +        exe: 'atom.exe'
 
      shell:
