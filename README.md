@@ -16,6 +16,10 @@ Download the latest [Particle Dev release](https://github.com/spark/particle-dev
 
 Download the latest [Particle Dev release](https://github.com/spark/particle-dev-app/releases/latest).
 
+### Linux
+
+Install Atom through your package manager and run `apm install particle-dev-complete`
+
 ## Using
 
 See [our documentation](https://docs.particle.io/guide/tools-and-features/dev/) to learn about how to use Particle Dev for software development.
