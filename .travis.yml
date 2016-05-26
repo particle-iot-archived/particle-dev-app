@@ -1,8 +1,10 @@
 compiler: clang
 sudo: false
 
-os:
-  - osx
+matrix:
+  include:
+    - os: linux
+    - os: osx
 
 notifications:
   email:
@@ -42,3 +44,11 @@ cache:
   directories:
     - build/node_modules
     - dist/atom-work-dir/node_modules
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - git
+    - libgnome-keyring-dev
+    - fakeroot
