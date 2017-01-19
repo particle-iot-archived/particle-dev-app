@@ -72,6 +72,8 @@ module.exports = (grunt) ->
       ->
         pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
       ->
+        pathFile 'bootstrap.patch', 'script/bootstrap'
+      ->
         if process.platform is 'darwin'
           return parallel [
             ->

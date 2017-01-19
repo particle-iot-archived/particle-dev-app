@@ -46,6 +46,7 @@ module.exports = (grunt) ->
       'download-atom',
       'sleep',
       'inject-packages',
+      'patch-code',
       'bootstrap-atom',
       'install-particle-dev',
       'copy-resources',
@@ -53,7 +54,6 @@ module.exports = (grunt) ->
     ]
 
   tasks = tasks.concat [
-    'patch-code',
     'build-app',
   ]
 
