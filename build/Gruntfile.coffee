@@ -48,6 +48,7 @@ module.exports = (grunt) ->
       'inject-packages',
       'patch-code',
       'bootstrap-atom',
+      'fix-windows-long-paths',
       'install-particle-dev',
       'copy-resources',
 
