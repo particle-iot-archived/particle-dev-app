@@ -25,7 +25,7 @@ module.exports = (grunt) ->
     injectPackage 'particle-dev-exception-reporting', '0.36.1'
     injectPackage 'particle-dev-cloud-functions', '0.1.0'
     injectPackage 'particle-dev-cloud-variables', '0.1.0'
-    injectPackage 'particle-dev-profiles', '0.1.12'
+    injectPackage 'particle-dev-profiles', '0.1.14'
     injectPackage 'particle-dev-libraries', '0.2.18'
 
     # Disable folowing packages:
