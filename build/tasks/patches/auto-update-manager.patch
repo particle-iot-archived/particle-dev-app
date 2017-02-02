@@ -1,11 +1,11 @@
---- auto-update-manager.coffee.orig	2016-02-12 04:59:30.000000000 -0800
-+++ auto-update-manager.coffee	2016-02-12 05:08:59.000000000 -0800
-@@ -19,7 +19,7 @@
-   constructor: (@version, @testMode, resourcePath) ->
+--- auto-update-manager.coffee.orig	2017-02-02 18:02:30.000000000 +0000
++++ auto-update-manager.coffee	2017-02-02 18:05:22.000000000 +0000
+@@ -18,7 +18,7 @@
+   constructor: (@version, @testMode, resourcePath, @config) ->
      @state = IdleState
      @iconPath = path.resolve(__dirname, '..', '..', 'resources', 'atom.png')
 -    @feedUrl = "https://atom.io/api/updates?version=#{@version}"
 +    @feedUrl = "https://updates.particle.io?version=#{@version}"
-     @config = new Config({configDirPath: process.env.ATOM_HOME, resourcePath, enablePersistence: true})
-     @config.setSchema null, {type: 'object', properties: _.clone(require('../config-schema'))}
-     @config.load()
+     process.nextTick => @setupAutoUpdater()
+ 
+   setupAutoUpdater: ->
