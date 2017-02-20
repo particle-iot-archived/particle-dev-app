@@ -12,7 +12,7 @@
      when 'win32'
 -      assets = [{assetName: 'atom-windows.zip', sourcePath: appName}]
 -      for squirrelAsset in ['AtomSetup.exe', 'AtomSetup.msi', 'RELEASES', "atom-#{version}-full.nupkg", "atom-#{version}-delta.nupkg"]
-+      assets = [{assetName: "particle-dev-windows-#{version}", sourcePath: 'ParticleDev'}]
++      assets = [{assetName: "particle-dev-windows-#{version}.zip", sourcePath: 'ParticleDev'}]
 +      for squirrelAsset in ['ParticleDevSetup.exe', 'ParticleDevSetup.msi', 'RELEASES', "particledev-#{version}-full.nupkg", "particledev-#{version}-delta.nupkg"]
          cp path.join(buildDir, 'installer', squirrelAsset), path.join(buildDir, squirrelAsset)
          assets.push({assetName: squirrelAsset, sourcePath: assetName})
