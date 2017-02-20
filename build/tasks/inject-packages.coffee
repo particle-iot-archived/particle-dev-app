@@ -21,11 +21,11 @@ module.exports = (grunt) ->
       injectPackage 'particle-dev', grunt.config.get('particleDevApp.particleDevVersion')
 
     injectPackage 'particle-dev-release-notes', '0.53.2'
-    injectPackage 'language-particle', '0.3.4'
+    injectPackage 'language-particle', '0.3.5'
     injectPackage 'particle-dev-exception-reporting', '0.36.1'
     injectPackage 'particle-dev-cloud-functions', '0.1.0'
     injectPackage 'particle-dev-cloud-variables', '0.1.0'
-    injectPackage 'particle-dev-profiles', '0.1.14'
+    injectPackage 'particle-dev-profiles', '0.1.15'
     injectPackage 'particle-dev-libraries', '0.2.18'
 
     # Disable folowing packages:
