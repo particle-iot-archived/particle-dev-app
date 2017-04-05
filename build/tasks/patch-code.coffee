@@ -46,19 +46,19 @@ module.exports = (grunt) ->
     # Patching
     patchPromise = parallel [
       ->
-        pathFile 'atom-application.patch', 'src/browser/atom-application.coffee'
+        pathFile 'atom-application.patch', 'src/main-process/atom-application.coffee'
       ->
-        file = path.join workDir, 'src/browser/atom-application.coffee'
+        file = path.join workDir, 'src/main-process/atom-application.coffee'
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
         pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
-        pathFile 'main.patch', 'src/browser/main.coffee'
+        pathFile 'main.patch', 'src/main-process/main.coffee'
       ->
-        pathFile 'auto-update-manager.patch', 'src/browser/auto-update-manager.coffee'
+        pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
       ->
-        pathFile 'application-menu.patch', 'src/browser/application-menu.coffee'
+        pathFile 'application-menu.patch', 'src/main-process/application-menu.coffee'
       ->
-        pathFile 'atom-window.patch', 'src/browser/atom-window.coffee'
+        pathFile 'atom-window.patch', 'src/main-process/atom-window.coffee'
       ->
         pathFile 'workspace.patch', 'src/workspace.coffee'
       ->
