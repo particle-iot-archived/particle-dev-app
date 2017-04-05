@@ -1,6 +1,6 @@
---- publish-build-task.coffee.orig	2017-02-02 17:49:50.000000000 +0000
-+++ publish-build-task.coffee	2017-02-02 17:59:25.000000000 +0000
-@@ -68,13 +68,11 @@
+--- publish-build-task.coffee.orig	2017-04-05 14:23:49.000000000 +0100
++++ publish-build-task.coffee	2017-04-05 14:24:50.000000000 +0100
+@@ -74,13 +74,11 @@
    switch process.platform
      when 'darwin'
        [
@@ -17,43 +17,12 @@
          cp path.join(buildDir, 'installer', squirrelAsset), path.join(buildDir, squirrelAsset)
          assets.push({assetName: squirrelAsset, sourcePath: assetName})
        assets
-@@ -96,7 +94,7 @@
+@@ -102,7 +100,7 @@
            arch = 'i386'
          else
            arch = 'x86_64'
 -        assetName = "atom.#{arch}.rpm"
 +        assetName = "particle-dev.#{arch}.rpm"
-
+ 
        cp sourcePath, path.join(buildDir, assetName)
        assets = [{assetName, sourcePath}]
-@@ -134,10 +132,10 @@
-   async.parallel(tasks, callback)
-
- getAtomDraftRelease = (isPrerelease, branchName, callback) ->
--  atomRepo = new GitHub({repo: 'atom/atom', token})
-+  atomRepo = new GitHub({repo: 'spark/particle-dev-app', token})
-   atomRepo.getReleases {prerelease: isPrerelease}, (error, releases=[]) ->
-     if error?
--      logError('Fetching atom/atom releases failed', error, releases)
-+      logError('Fetching spark/particle-dev-app releases failed', error, releases)
-       callback(error)
-     else
-       [firstDraft] = releases.filter ({draft}) -> draft
-@@ -160,7 +158,7 @@
- createAtomDraftRelease = (isPrerelease, branchName, callback) ->
-   {version} = require('../../package.json')
-   options =
--    uri: 'https://api.github.com/repos/atom/atom/releases'
-+    uri: 'https://api.github.com/repos/spark/particle-dev-app/releases'
-     method: 'POST'
-     headers: defaultHeaders
-     json:
-@@ -177,7 +175,7 @@
-
-   request options, (error, response, body='') ->
-     if error? or response.statusCode isnt 201
--      logError("Creating atom/atom draft release failed", error, body)
-+      logError("Creating spark/particle-dev-app draft release failed", error, body)
-       callback(error ? new Error(response.statusCode))
-     else
-       callback(null, body)

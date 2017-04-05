@@ -1,3 +1,4 @@
 export ATOM_VERSION=v1.9.0
 export ATOM_NODE_VERSION=0.37.9
+export ATOM_PUBLISH_REPO=spark/particle-dev-app
 export PARTICLE_DEV_VERSION=0.1.21
