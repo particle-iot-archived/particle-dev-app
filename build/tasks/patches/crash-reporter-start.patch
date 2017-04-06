@@ -1,0 +1,15 @@
+--- crash-reporter-start.js.orig	2017-04-06 17:22:34.000000000 +0100
++++ crash-reporter-start.js	2017-04-06 17:24:06.000000000 +0100
+@@ -1,9 +1,9 @@
+ module.exports = function (extra) {
+   const {crashReporter} = require('electron')
+   crashReporter.start({
+-    productName: 'Atom',
+-    companyName: 'GitHub',
+-    submitURL: 'https://crashreporter.atom.io',
++    productName: 'ParticleDev',
++    companyName: 'Particle',
++    submitURL: 'https://particle-dev-breakpad.herokuapp.com/crash_upload',
+     autoSubmit: false,
+     extra: extra
+   })

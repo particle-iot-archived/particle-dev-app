@@ -52,13 +52,15 @@ module.exports = (grunt) ->
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
         pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
-        pathFile 'main.patch', 'src/main-process/main.coffee'
+        pathFile 'main.patch', 'src/main-process/main.js'
       ->
         pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
       ->
         pathFile 'application-menu.patch', 'src/main-process/application-menu.coffee'
       ->
         pathFile 'atom-window.patch', 'src/main-process/atom-window.coffee'
+      ->
+        pathFile 'crash-reporter-start.patch', 'src/crash-reporter-start.js'
       ->
         pathFile 'workspace.patch', 'src/workspace.coffee'
       ->

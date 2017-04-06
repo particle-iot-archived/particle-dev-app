@@ -1,13 +1,14 @@
---- atom-application.coffee.orig	2016-02-12 05:17:59.000000000 -0800
-+++ atom-application.coffee	2016-02-12 05:30:45.000000000 -0800
-@@ -34,9 +34,9 @@
+--- atom-application.coffee.orig	2017-04-06 17:26:42.000000000 +0100
++++ atom-application.coffee	2017-04-06 17:28:04.000000000 +0100
+@@ -32,9 +32,9 @@
    @open: (options) ->
      unless options.socketPath?
        if process.platform is 'win32'
--        options.socketPath = '\\\\.\\pipe\\atom-sock'
-+        options.socketPath = '\\\\.\\pipe\\particledev-sock'
+-        options.socketPath = "\\\\.\\pipe\\atom-#{options.version}-sock"
++        options.socketPath = "\\\\.\\pipe\\particledev-#{options.version}-sock"
        else
 -        options.socketPath = path.join(os.tmpdir(), "atom-#{options.version}-#{process.env.USER}.sock")
 +        options.socketPath = path.join(os.tmpdir(), "particledev-#{options.version}-#{process.env.USER}.sock")
-
+ 
      createAtomApplication = -> new AtomApplication(options)
+ 
