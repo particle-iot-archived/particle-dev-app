@@ -1,14 +1,14 @@
---- atom-application.coffee.orig	2017-04-06 17:26:42.000000000 +0100
-+++ atom-application.coffee	2017-04-06 17:28:04.000000000 +0100
-@@ -32,9 +32,9 @@
-   @open: (options) ->
+--- atom-application.coffee.orig	2017-04-10 16:46:24.000000000 +0100
++++ atom-application.coffee	2017-04-10 16:53:09.000000000 +0100
+@@ -34,9 +34,9 @@
      unless options.socketPath?
        if process.platform is 'win32'
--        options.socketPath = "\\\\.\\pipe\\atom-#{options.version}-sock"
-+        options.socketPath = "\\\\.\\pipe\\particledev-#{options.version}-sock"
+         userNameSafe = new Buffer(process.env.USERNAME).toString('base64')
+-        options.socketPath = "\\\\.\\pipe\\atom-#{options.version}-#{userNameSafe}-#{process.arch}-sock"
++        options.socketPath = "\\\\.\\pipe\\particledev-#{options.version}-#{userNameSafe}-#{process.arch}-sock"
        else
 -        options.socketPath = path.join(os.tmpdir(), "atom-#{options.version}-#{process.env.USER}.sock")
 +        options.socketPath = path.join(os.tmpdir(), "particledev-#{options.version}-#{process.env.USER}.sock")
  
-     createAtomApplication = -> new AtomApplication(options)
- 
+     # FIXME: Sometimes when socketPath doesn't exist, net.connect would strangely
+     # take a few seconds to trigger 'error' event, it could be a bug of node

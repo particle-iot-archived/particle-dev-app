@@ -1,11 +1,15 @@
---- auto-update-manager.coffee.orig	2017-02-02 18:02:30.000000000 +0000
-+++ auto-update-manager.coffee	2017-02-02 18:05:22.000000000 +0000
-@@ -18,7 +18,7 @@
-   constructor: (@version, @testMode, resourcePath, @config) ->
-     @state = IdleState
-     @iconPath = path.resolve(__dirname, '..', '..', 'resources', 'atom.png')
--    @feedUrl = "https://atom.io/api/updates?version=#{@version}"
-+    @feedUrl = "https://updates.particle.io?version=#{@version}"
-     process.nextTick => @setupAutoUpdater()
- 
+--- auto-update-manager.coffee.orig	2017-04-10 16:59:02.000000000 +0100
++++ auto-update-manager.coffee	2017-04-10 17:23:06.000000000 +0100
+@@ -22,10 +22,10 @@
    setupAutoUpdater: ->
+     if process.platform is 'win32'
+       archSuffix = if process.arch is 'ia32' then '' else '-' + process.arch
+-      @feedUrl = "https://atom.io/api/updates#{archSuffix}?version=#{@version}"
++      @feedUrl = "https://updates.particle.io/updates#{archSuffix}?version=#{@version}"
+       autoUpdater = require './auto-updater-win32'
+     else
+-      @feedUrl = "https://atom.io/api/updates?version=#{@version}"
++      @feedUrl = "https://updates.particle.io/updates?version=#{@version}"
+       {autoUpdater} = require 'electron'
+ 
+     autoUpdater.on 'error', (event, message) =>

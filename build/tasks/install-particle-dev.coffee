@@ -28,7 +28,7 @@ installDependencies = (particleDevPath, done) ->
     command = '../../apm/node_modules/atom-package-manager/bin/apm'
 
   verbose = if !_grunt.option('verbose') then '' else ' --verbose'
-  cp.safeExec command + ' install' + verbose, options, ->
+  cp.safeExec command + ' install --production' + verbose, options, ->
     injectPackage 'particle-dev', packages.version
     done()
 

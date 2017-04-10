@@ -52,7 +52,7 @@ module.exports = (grunt) ->
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
         pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
-        pathFile 'main.patch', 'src/main-process/main.js'
+        pathFile 'start.patch', 'src/main-process/start.js'
       ->
         pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
       ->
@@ -63,18 +63,16 @@ module.exports = (grunt) ->
         pathFile 'crash-reporter-start.patch', 'src/crash-reporter-start.js'
       ->
         pathFile 'workspace.patch', 'src/workspace.coffee'
-      ->
-        pathFile 'Gruntfile.patch', 'build/Gruntfile.coffee'
-      ->
-        pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee'
-      ->
-        pathFile 'publish-build-task.patch', 'build/tasks/publish-build-task.coffee'
-      ->
-        pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee'
-      ->
-        pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
-      ->
-        pathFile 'bootstrap.patch', 'script/bootstrap'
+      # ->
+      #   pathFile 'Gruntfile.patch', 'build/Gruntfile.coffee'
+      # ->
+      #   pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee'
+      # ->
+      #   pathFile 'publish-build-task.patch', 'build/tasks/publish-build-task.coffee'
+      # ->
+      #   pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee'
+      # ->
+      #   pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
       ->
         if process.platform is 'darwin'
           return parallel [

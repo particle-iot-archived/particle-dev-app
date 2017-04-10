@@ -1,0 +1,11 @@
+--- start.js.orig	2017-04-10 17:29:42.000000000 +0100
++++ start.js	2017-04-10 17:29:57.000000000 +0100
+@@ -40,7 +40,7 @@
+   }
+ 
+   // NB: This prevents Win10 from showing dupe items in the taskbar
+-  app.setAppUserModelId('com.squirrel.atom.' + process.arch)
++  app.setAppUserModelId('com.squirrel.particle.' + process.arch)
+ 
+   function addPathToOpen (event, pathToOpen) {
+     event.preventDefault()
