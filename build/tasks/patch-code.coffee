@@ -46,33 +46,23 @@ module.exports = (grunt) ->
     # Patching
     patchPromise = parallel [
       ->
+        pathFile 'application-menu.patch', 'src/main-process/application-menu.coffee'
+      ->
         pathFile 'atom-application.patch', 'src/main-process/atom-application.coffee'
+      ->
+        pathFile 'atom-window.patch', 'src/main-process/atom-window.coffee'
+      ->
+        pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
       ->
         file = path.join workDir, 'src/main-process/atom-application.coffee'
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
         pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
-        pathFile 'start.patch', 'src/main-process/start.js'
-      ->
-        pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
-      ->
-        pathFile 'application-menu.patch', 'src/main-process/application-menu.coffee'
-      ->
-        pathFile 'atom-window.patch', 'src/main-process/atom-window.coffee'
-      ->
         pathFile 'crash-reporter-start.patch', 'src/crash-reporter-start.js'
       ->
+        pathFile 'start.patch', 'src/main-process/start.js'
+      ->
         pathFile 'workspace.patch', 'src/workspace.coffee'
-      # ->
-      #   pathFile 'Gruntfile.patch', 'build/Gruntfile.coffee'
-      # ->
-      #   pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee'
-      # ->
-      #   pathFile 'publish-build-task.patch', 'build/tasks/publish-build-task.coffee'
-      # ->
-      #   pathFile 'set-version-task.patch', 'build/tasks/set-version-task.coffee'
-      # ->
-      #   pathFile 'license-overrides.patch', 'build/tasks/license-overrides.coffee'
       ->
         if process.platform is 'darwin'
           return parallel [
