@@ -1,0 +1,20 @@
+--- atom-paths.js.orig	2017-04-12 15:33:48.000000000 +0100
++++ atom-paths.js	2017-04-12 15:34:37.000000000 +0100
+@@ -27,7 +27,7 @@
+ module.exports = {
+   setAtomHome: (homePath) => {
+     // When a read-writeable .atom folder exists above app use that
+-    const portableHomePath = path.join(getAppDirectory(), '..', '.atom')
++    const portableHomePath = path.join(getAppDirectory(), '..', '.particledev')
+     if (fs.existsSync(portableHomePath)) {
+       if (hasWriteAccess(portableHomePath)) {
+         process.env.ATOM_HOME = portableHomePath
+@@ -43,7 +43,7 @@
+     }
+ 
+     // Fall back to default .atom folder in users home folder
+-    process.env.ATOM_HOME = path.join(homePath, '.atom')
++    process.env.ATOM_HOME = path.join(homePath, '.particledev')
+   },
+ 
+   setUserData: (app) => {

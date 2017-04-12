@@ -1,0 +1,47 @@
+--- package-application.js.orig	2017-04-12 15:36:54.000000000 +0100
++++ package-application.js	2017-04-12 15:39:48.000000000 +0100
+@@ -15,8 +15,8 @@
+   const appName = getAppName()
+   console.log(`Running electron-packager on ${CONFIG.intermediateAppPath} with app name "${appName}"`)
+   return runPackager({
+-    'app-bundle-id': 'com.github.atom',
+-    'app-copyright': `Copyright © 2014-${(new Date()).getFullYear()} GitHub, Inc. All rights reserved.`,
++    'app-bundle-id': 'com.particle.particledev',
++    'app-copyright': `Copyright © 2014-${(new Date()).getFullYear()} Particle Industries, Inc. All rights reserved.`,
+     'app-version': CONFIG.appMetadata.version,
+     'arch': process.platform === 'darwin' ? 'x64' : process.arch, // OS X is 64-bit only
+     'asar': {unpack: buildAsarUnpackGlobExpression()},
+@@ -32,9 +32,9 @@
+     'platform': process.platform,
+     'version': CONFIG.appMetadata.electronVersion,
+     'version-string': {
+-      'CompanyName': 'GitHub, Inc.',
+-      'FileDescription': 'Atom',
+-      'ProductName': 'Atom'
++      'CompanyName': 'Particle Industries, Inc.',
++      'FileDescription': 'Particle Dev',
++      'ProductName': 'Particle Dev'
+     }
+   }).then((packagedAppPath) => {
+     let bundledResourcesPath
+@@ -112,9 +112,9 @@
+ 
+ function getAppName () {
+   if (process.platform === 'darwin') {
+-    return CONFIG.channel === 'beta' ? 'Atom Beta' : 'Atom'
++    return 'Particle Dev'
+   } else {
+-    return 'atom'
++    return 'particledev'
+   }
+ }
+ 
+@@ -167,7 +167,7 @@
+     if (fs.existsSync(packagedAppPath)) fs.removeSync(packagedAppPath)
+     fs.renameSync(packageOutputDirPath, packagedAppPath)
+   } else {
+-    const appName = CONFIG.channel === 'beta' ? 'Atom Beta' : 'Atom'
++    const appName = 'Particle Dev'
+     packagedAppPath = path.join(CONFIG.buildOutputPath, appName)
+     if (process.platform === 'win32' && process.arch !== 'ia32') {
+       packagedAppPath += ` ${process.arch}`

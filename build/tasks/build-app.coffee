@@ -8,29 +8,17 @@ _grunt = null
 module.exports = (grunt) ->
   _grunt = grunt
   grunt.registerTask 'build-app', 'Builds executable', ->
+    done = @async()
     workDir = grunt.config.get('particleDevApp.workDir')
-    grunt.option('build-dir', grunt.config.get('particleDevApp.buildDir'))
 
-    # Register Atom's tasks
-    process.chdir path.join(workDir, 'build')
-    grunt.loadTasks 'Gruntfile.coffee'
-    grunt.loadTasks '.'
-
-    tasks = [
-      'download-electron',
-      'download-electron-chromedriver',
-      'build',
-      'set-version',
-      'check-licenses',
-      'lint',
-      'generate-asar'
-    ]
+    # Run Atom's build script
+    process.chdir(workDir)
+    params = ['script/build']
 
     if process.platform is 'win32'
-      tasks.push('codesign:exe')
-      tasks.push('create-windows-installer:installer')
-      tasks.push('codesign:installer')
-    tasks.push('codesign:app') if process.platform is 'darwin'
-    tasks.push('mkdeb') if process.platform is 'linux'
-    tasks.push('publish-build')
-    grunt.task.run(tasks)
+      params.push('--code-sign', '--create-windows-installer')
+    else if process.platform is 'darwin'
+      params.push('--code-sign', '--compress-artifacts')
+
+    cp.safeSpawn 'node', params, (result) ->
+      done()

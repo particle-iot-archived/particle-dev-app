@@ -50,15 +50,29 @@ module.exports = (grunt) ->
       ->
         pathFile 'atom-application.patch', 'src/main-process/atom-application.coffee'
       ->
+        pathFile 'atom-environment.patch', 'src/atom-environment.coffee'
+      ->
+        pathFile 'atom-paths.patch', 'src/atom-paths.js'
+      ->
         pathFile 'atom-window.patch', 'src/main-process/atom-window.coffee'
       ->
         pathFile 'auto-update-manager.patch', 'src/main-process/auto-update-manager.coffee'
+      ->
+        pathFile 'build.patch', 'script/build'
+      ->
+        pathFile 'code-sign-on-mac.patch', 'script/lib/code-sign-on-mac.js'
       ->
         file = path.join workDir, 'src/main-process/atom-application.coffee'
         replaceInFile file, '#{particleDevVersion}', particleDevVersion
         pathFile 'command-installer.patch', 'src/command-installer.coffee'
       ->
         pathFile 'crash-reporter-start.patch', 'src/crash-reporter-start.js'
+      ->
+        pathFile 'create-windows-installer.patch', 'script/lib/create-windows-installer.js'
+      ->
+        pathFile 'package-application.patch', 'script/lib/package-application.js'
+      ->
+        pathFile 'include-path-in-packaged-app.patch', 'script/lib/include-path-in-packaged-app.js'
       ->
         pathFile 'start.patch', 'src/main-process/start.js'
       ->

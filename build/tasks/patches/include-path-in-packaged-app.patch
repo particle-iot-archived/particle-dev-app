@@ -1,0 +1,11 @@
+--- include-path-in-packaged-app.js.orig	2017-04-12 19:13:09.000000000 +0100
++++ include-path-in-packaged-app.js	2017-04-12 19:13:28.000000000 +0100
+@@ -50,7 +50,7 @@
+   escapeRegExp(path.join('vendor', 'apm')),
+ 
+   // These are only required in dev-mode, when pegjs grammars aren't precompiled
+-  escapeRegExp(path.join('node_modules', 'loophole')),
++  // escapeRegExp(path.join('node_modules', 'loophole')),
+   escapeRegExp(path.join('node_modules', 'pegjs')),
+   escapeRegExp(path.join('node_modules', '.bin', 'pegjs')),
+   escapeRegExp(path.join('node_modules', 'spellchecker', 'vendor', 'hunspell') + path.sep) + '.*',

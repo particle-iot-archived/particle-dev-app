@@ -1,0 +1,17 @@
+--- atom-environment.coffee.orig	2017-04-12 12:19:47.000000000 +0100
++++ atom-environment.coffee	2017-04-12 12:20:04.000000000 +0100
+@@ -673,10 +673,10 @@
+     loadStatePromise = @loadState().then (state) =>
+       @windowDimensions = state?.windowDimensions
+       @displayWindow().then =>
+-        @commandInstaller.installAtomCommand false, (error) ->
+-          console.warn error.message if error?
+-        @commandInstaller.installApmCommand false, (error) ->
+-          console.warn error.message if error?
++        # @commandInstaller.installAtomCommand false, (error) ->
++        #   console.warn error.message if error?
++        # @commandInstaller.installApmCommand false, (error) ->
++        #   console.warn error.message if error?
+ 
+         @disposables.add(@applicationDelegate.onDidOpenLocations(@openLocations.bind(this)))
+         @disposables.add(@applicationDelegate.onApplicationMenuCommand(@dispatchApplicationMenuCommand.bind(this)))

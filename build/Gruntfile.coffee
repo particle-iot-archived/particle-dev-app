@@ -44,14 +44,12 @@ module.exports = (grunt) ->
     tasks = tasks.concat [
       'get-particle-dev-version',
       'download-atom',
-      'sleep',
       'inject-packages',
       'patch-code',
       'bootstrap-atom',
       'fix-windows-long-paths',
       'install-particle-dev',
       'copy-resources',
-
     ]
 
   tasks = tasks.concat [

@@ -1,0 +1,11 @@
+--- build.old	2017-04-12 12:11:45.000000000 +0100
++++ build	2017-04-12 12:11:54.000000000 +0100
+@@ -4,7 +4,7 @@
+ 
+ // Run bootstrap first to ensure all the dependencies used later in this script
+ // are installed.
+-require('./bootstrap')
++//require('./bootstrap')
+ 
+ // Needed so we can require src/module-cache.coffee during generateModuleCache
+ require('coffee-script/register')

@@ -1,0 +1,22 @@
+--- create-windows-installer.js.orig	2017-04-12 12:22:43.000000000 +0100
++++ create-windows-installer.js	2017-04-12 12:25:41.000000000 +0100
+@@ -14,12 +14,15 @@
+   const archSuffix = process.arch === 'ia32' ? '' : '-' + process.arch
+   const options = {
+     appDirectory: packagedAppPath,
+-    authors: 'GitHub Inc.',
+-    iconUrl: `https://raw.githubusercontent.com/atom/atom/master/resources/app-icons/${CONFIG.channel}/atom.ico`,
++    authors: 'Particle Industries.',
++    iconUrl: 'https://raw.githubusercontent.com/spark/particle-dev-app/master/build/resources/particle-dev.ico',
+     loadingGif: path.join(CONFIG.repositoryRootPath, 'resources', 'win', 'loading.gif'),
+     outputDirectory: CONFIG.buildOutputPath,
+-    remoteReleases: `https://atom.io/api/updates${archSuffix}?version=${CONFIG.appMetadata.version}`,
+-    setupIcon: path.join(CONFIG.repositoryRootPath, 'resources', 'app-icons', CONFIG.channel, 'atom.ico')
++    remoteReleases: `https://updates.particle.io/updates${archSuffix}?version=${CONFIG.appMetadata.version}`,
++    setupIcon: path.join(CONFIG.repositoryRootPath, 'resources', 'app-icons', 'stable', 'atom.ico'),
++    productName: 'ParticleDev',
++    name: 'particledev',
++    exe: 'atom.exe'
+   }
+ 
+   const certPath = path.join(os.tmpdir(), 'win.p12')
