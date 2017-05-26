@@ -16,7 +16,7 @@
 +    setupIcon: path.join(CONFIG.repositoryRootPath, 'resources', 'app-icons', 'stable', 'atom.ico'),
 +    productName: 'ParticleDev',
 +    name: 'particledev',
-+    exe: 'atom.exe'
++    exe: 'particledev.exe'
    }
  
    const certPath = path.join(os.tmpdir(), 'win.p12')
