@@ -1,6 +1,6 @@
---- create-windows-installer.js.1	2017-06-02 14:15:41.000000000 +0200
-+++ create-windows-installer.js.2	2017-06-02 14:20:35.000000000 +0200
-@@ -14,19 +14,26 @@
+--- create-windows-installer.js.orig	2017-07-19 06:58:27.000000000 -0500
++++ create-windows-installer.js	2017-07-19 07:09:59.000000000 -0500
+@@ -14,12 +14,15 @@
    const archSuffix = process.arch === 'ia32' ? '' : '-' + process.arch
    const options = {
      appDirectory: packagedAppPath,
@@ -19,27 +19,4 @@
 +    exe: 'particledev.exe'
    }
  
--  const certPath = path.join(os.tmpdir(), 'win.p12')
--  const signing = codeSign && process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL
-+  const signing = codeSign && (process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL || process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH)
-+  let certPath = process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH;
- 
-   if (signing) {
--    downloadFileFromGithub(process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL, certPath)
-+    if (!certPath) {
-+      certPath = path.join(os.tmpdir(), 'win.p12')
-+      downloadFileFromGithub(process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL, certPath)
-+    }
-+
-     var signParams = []
-     signParams.push(`/f ${certPath}`) // Signing cert file
-     signParams.push(`/p ${process.env.ATOM_WIN_CODE_SIGNING_CERT_PASSWORD}`) // Signing cert password
-@@ -39,7 +46,7 @@
-   }
- 
-   const cleanUp = function () {
--    if (fs.existsSync(certPath)) {
-+    if (fs.existsSync(certPath) && !process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH) {
-       console.log(`Deleting certificate at ${certPath}`)
-       fs.removeSync(certPath)
-     }
+   const signing = codeSign && (process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL || process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH)

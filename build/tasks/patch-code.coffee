@@ -16,7 +16,8 @@ pathFile = (patchFile, targetFile) ->
   result = cp.exec command, (error, stdout, stderr) ->
     if error
       console.log '❌ ', patchFile, 'failed'
-      console.error '\x1b[31m' + "\t" + stdout.replace(/\n/g, "\n\t") + '\x1b[0m'
+      out = if stdout then stdout else stderr
+      console.error '\x1b[31m' + "\t" + out.replace(/\n/g, "\n\t") + '\x1b[0m'
       dfd.reject error
     else
       console.log '✅ ', patchFile, 'applied'
@@ -76,7 +77,7 @@ module.exports = (grunt) ->
       ->
         pathFile 'start.patch', 'src/main-process/start.js'
       ->
-        pathFile 'workspace.patch', 'src/workspace.coffee'
+        pathFile 'workspace.patch', 'src/workspace.js'
       ->
         if process.platform is 'darwin'
           return parallel [

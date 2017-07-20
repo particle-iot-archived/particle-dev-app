@@ -29,7 +29,7 @@ module.exports = (grunt) ->
     injectPackage 'particle-dev-libraries', '0.2.18'
 
     # Disable folowing packages:
-    # injectPackage 'welcome'
+    injectPackage 'welcome'
     injectPackage 'feedback'
     injectPackage 'metrics'
     injectPackage 'deprecation-cop'
