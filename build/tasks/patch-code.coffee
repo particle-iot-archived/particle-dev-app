@@ -75,6 +75,8 @@ module.exports = (grunt) ->
       ->
         pathFile 'include-path-in-packaged-app.patch', 'script/lib/include-path-in-packaged-app.js'
       ->
+        pathFile 'initialize-application-window.patch', 'src/initialize-application-window.coffee'
+      ->
         pathFile 'start.patch', 'src/main-process/start.js'
       ->
         pathFile 'workspace.patch', 'src/workspace.js'

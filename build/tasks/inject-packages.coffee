@@ -28,11 +28,13 @@ module.exports = (grunt) ->
     injectPackage 'particle-dev-profiles', '0.1.15'
     injectPackage 'particle-dev-libraries', '0.2.18'
 
+    # Following packages are required by Atom source code:
+    # injectPackage 'welcome'
+    # injectPackage 'metrics'
+    # injectPackage 'deprecation-cop'
+
     # Disable folowing packages:
-    injectPackage 'welcome'
     injectPackage 'feedback'
-    injectPackage 'metrics'
-    injectPackage 'deprecation-cop'
     injectPackage 'release-notes'
 
     injectDependency 'coffeestack', 'git+https://github.com/spark/coffeestack.git#master'
