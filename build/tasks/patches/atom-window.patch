@@ -1,11 +1,11 @@
 --- atom-window.coffee.orig	2017-04-05 16:26:49.000000000 +0100
 +++ atom-window.coffee	2017-04-05 16:31:10.000000000 +0100
 @@ -22,7 +22,7 @@
- 
+
      options =
        show: false
 -      title: 'Atom'
-+      title: 'Particle Dev'
++      title: 'Particle Desktop IDE'
        # Add an opaque backgroundColor (instead of keeping the default
        # transparent one) to prevent subpixel anti-aliasing from being disabled.
        # We believe this is a regression introduced with Electron 0.37.3, and
