@@ -5,7 +5,7 @@
    getDefaultTemplate: ->
      [
 -      label: "Atom"
-+      label: "Particle Dev"
++      label: "Particle Desktop IDE"
        submenu: [
            {label: "Check for Update", metadata: {autoUpdate: true}}
            {label: 'Reload', accelerator: 'Command+R', click: => @focusedWindow()?.reload()}

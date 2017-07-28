@@ -4,10 +4,10 @@
  'menu': [
    {
 -    label: 'Atom'
-+    label: 'Particle Dev'
++    label: 'Particle Desktop IDE'
      submenu: [
 -      { label: 'About Atom', command: 'application:about' }
-+      { label: 'About Particle Dev', command: 'application:about' }
++      { label: 'About Particle Desktop IDE', command: 'application:about' }
        { label: 'View License', command: 'application:open-license' }
        { label: 'VERSION', enabled: false }
        { label: 'Restart and Install Update', command: 'application:install-update', visible: false}
@@ -16,7 +16,7 @@
        { label: 'Services', role: 'services', submenu: [] }
        { type: 'separator' }
 -      { label: 'Hide Atom', command: 'application:hide' }
-+      { label: 'Hide Particle Dev', command: 'application:hide' }
++      { label: 'Hide Particle Desktop IDE', command: 'application:hide' }
        { label: 'Hide Others', command: 'application:hide-other-applications' }
        { label: 'Show All', command: 'application:unhide-all-applications' }
        { type: 'separator' }

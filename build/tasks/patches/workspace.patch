@@ -5,7 +5,7 @@
    updateWindowTitle () {
      let itemPath, itemTitle, projectPath, representedPath
 -    const appName = 'Atom'
-+    const appName = 'Particle Local IDE'
++    const appName = 'Particle Desktop IDE'
      const left = this.project.getPaths()
      const projectPaths = left != null ? left : []
      const item = this.getActivePaneItem()
