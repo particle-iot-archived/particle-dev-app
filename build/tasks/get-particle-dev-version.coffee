@@ -7,7 +7,7 @@ getParticleDevVersion = (cb) ->
   # Get Particle Dev version from options/current sources
   if !!_grunt.option('particleDevVersion')
     cb _grunt.option('particleDevVersion')
-  else if (!!process.env.TRAVIS_TAG or !!process.env.APPVEYOR_REPO_TAG_NAME) and !!process.env.PARTICLE_DEV_VERSION
+  else if (!!process.env.IS_RELEASE) and !!process.env.PARTICLE_DEV_VERSION
     cb process.env.PARTICLE_DEV_VERSION
   else
     isRelease = false

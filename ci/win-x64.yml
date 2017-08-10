@@ -1,0 +1,27 @@
+platform: windows
+
+params:
+  NODE_ARCH: 64
+  JANKY_BRANCH: stable
+  TRAVIS: 1
+  CI: 1
+  BUILD_NODE_VERSION: 6.9.4
+  npm_config_runtime: electron
+  BUILD_ATOM_RELEASES_S3_BUCKET: particle-dev-releases
+  IS_RELEASE: ((IS_RELEASE))
+  ENCRYPTION_SECRET: ((ENCRYPTION_SECRET))
+  ATOM_ACCESS_TOKEN: ((ATOM_ACCESS_TOKEN))
+  KEY_PASSWORD: ((ATOM_WIN_CODE_SIGNING_CERT_PASSWORD))
+  ATOM_WIN_CODE_SIGNING_CERT_PASSWORD: ((ATOM_WIN_CODE_SIGNING_CERT_PASSWORD))
+  BUILD_ATOM_RELEASES_S3_KEY: ((BUILD_ATOM_RELEASES_S3_KEY))
+  BUILD_ATOM_RELEASES_S3_SECRET: ((BUILD_ATOM_RELEASES_S3_SECRET))
+
+run:
+  path: powershell.exe
+  args: ["sources/script/build-windows.ps1"]
+
+inputs:
+  - name: sources
+
+outputs:
+  - name: artefacts

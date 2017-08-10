@@ -12,7 +12,7 @@ pathFile = (patchFile, targetFile) ->
   patchFile = path.join(__dirname, 'patches', patchFile)
   targetFile = path.join(workDir, targetFile.replace('/', path.sep))
 
-  command = 'patch -i ' + patchFile + ' ' + targetFile
+  command = 'patch --binary -i ' + patchFile + ' ' + targetFile
   result = cp.exec command, (error, stdout, stderr) ->
     if error
       console.log '❌ ', patchFile, 'failed'
@@ -89,8 +89,8 @@ module.exports = (grunt) ->
               pathFile 'darwin.patch', 'menus/darwin.cson'
           ]
         else if process.platform is 'win32'
-          return pathFile 'win32.patch', 'menus/win32.cson'
-        else
+          # return pathFile 'win32.patch', 'menus/win32.cson'
+        else if process.platform is 'linux'
           return pathFile 'linux.patch', 'menus/linux.cson'
     ]
 

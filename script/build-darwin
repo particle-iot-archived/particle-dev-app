@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# set -e -x
+function realpath { echo $(cd $(dirname $1); pwd)/$(basename $1); }
+
+BASH_SOURCE_PATH=`dirname $BASH_SOURCE`
+SCRIPT_PATH=`realpath $BASH_SOURCE_PATH`
+BUILD_PATH=`realpath $SCRIPT_PATH/../build`
+RESOURCES_PATH=$BUILD_PATH/resources
+
+# Cache buster
+# rm -rf sources/build/node_modules && rm -rf sources/dist/atom-work-dir/node_modules
+
+# install
+git clone https://github.com/creationix/nvm.git .nvm
+source .nvm/nvm.sh
+nvm install $BUILD_NODE_VERSION
+nvm use --delete-prefix $BUILD_NODE_VERSION
+
+cd sources
+  # before_script
+  export ATOM_MAC_CODE_SIGNING_CERT_PATH="$RESOURCES_PATH/key.p12"
+  ./script/add-key
+  export JANKY_SHA1=`git rev-parse --short HEAD`
+  source .atomrc
+
+  # script
+  ./script/build
+
+  # after_script
+  ./script/remove-key
+cd ..
+
+# Move the artefacts
+cp -R sources/dist/atom-work-dir/out/ artefacts
