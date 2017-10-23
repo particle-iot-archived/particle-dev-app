@@ -15,7 +15,7 @@ module.exports = (grunt) ->
     injectPackage 'swap-panes', '0.2.0'
     injectPackage 'tool-bar', '1.1.0'
     injectPackage 'monokai', '0.24.0'
-    injectPackage 'console-panel', '0.2.1'
+    injectPackage 'console-panel', '0.3.0'
 
     if grunt.config.get 'particleDevApp.isRelease'
       injectPackage 'particle-dev', grunt.config.get('particleDevApp.particleDevVersion')
@@ -23,10 +23,10 @@ module.exports = (grunt) ->
     injectPackage 'particle-dev-release-notes', '0.53.2'
     injectPackage 'language-particle', '0.3.5'
     injectPackage 'particle-dev-exception-reporting', '0.36.1'
-    injectPackage 'particle-dev-cloud-functions', '0.1.2'
-    injectPackage 'particle-dev-cloud-variables', '0.1.2'
-    injectPackage 'particle-dev-profiles', '0.2.2'
-    injectPackage 'particle-dev-libraries', '0.2.21'
+    injectPackage 'particle-dev-cloud-functions', '0.2.0'
+    injectPackage 'particle-dev-cloud-variables', '0.2.0'
+    injectPackage 'particle-dev-profiles', '0.2.3'
+    injectPackage 'particle-dev-libraries', '0.2.23'
 
     # Following packages are required by Atom source code:
     # injectPackage 'welcome'

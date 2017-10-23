@@ -1,5 +1,7 @@
+Remove-Item C:\atom-work-dir -recurse
+
 echo "--> Installing Node.js..."
-$env:NVM_HOME = "c:\nvm"
+$env:NVM_HOME = "C:\ProgramData\nvm"
 $env:Path += ";$env:NVM_HOME"
 #nvm install $env:BUILD_NODE_VERSION
 nvm use $env:BUILD_NODE_VERSION $env:NODE_ARCH
@@ -7,6 +9,7 @@ $env:Path += ";$env:NVM_HOME\v$env:BUILD_NODE_VERSION"
 #npm install -g npm
 
 echo "--> Adding other dependencies..."
+$env:Path += ";C:\Users\Administrator\.windows-build-tools\python27"
 choco install patch
 $env:Path += ";C:\ProgramData\chocolatey\lib\patch\tools\bin"
 choco install git

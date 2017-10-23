@@ -12,6 +12,9 @@ pathFile = (patchFile, targetFile) ->
   patchFile = path.join(__dirname, 'patches', patchFile)
   targetFile = path.join(workDir, targetFile.replace('/', path.sep))
 
+  # Make a copy of the original
+  copyCommand = if process.platform is 'win32' then 'copy' else 'cp'
+  cp.exec "#{copyCommand} #{targetFile} #{targetFile}.orig"
   command = 'patch --binary -i ' + patchFile + ' ' + targetFile
   result = cp.exec command, (error, stdout, stderr) ->
     if error

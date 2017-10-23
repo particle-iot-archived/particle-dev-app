@@ -1,5 +1,5 @@
---- build.old	2017-04-12 12:11:45.000000000 +0100
-+++ build	2017-04-12 12:11:54.000000000 +0100
+--- build.orig	2017-10-13 19:24:22.000000000 +0200
++++ build	2017-10-13 19:26:23.000000000 +0200
 @@ -4,7 +4,7 @@
  
  // Run bootstrap first to ensure all the dependencies used later in this script
@@ -9,3 +9,12 @@
  
  // Needed so we can require src/module-cache.coffee during generateModuleCache
  require('coffee-script/register')
+@@ -81,7 +81,7 @@
+       }
+       case 'win32': {
+         if (argv.codeSign) {
+-          const executablesToSign = [ path.join(packagedAppPath, 'Atom.exe') ]
++          const executablesToSign = [ path.join(packagedAppPath, 'particledev.exe') ]
+           if (argv.createWindowsInstaller) {
+             executablesToSign.push(path.join(__dirname, 'node_modules', 'electron-winstaller', 'vendor', 'Update.exe'))
+           }

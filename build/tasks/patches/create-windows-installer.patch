@@ -1,6 +1,6 @@
---- create-windows-installer.js.orig	2017-07-19 06:58:27.000000000 -0500
-+++ create-windows-installer.js	2017-07-19 07:09:59.000000000 -0500
-@@ -14,12 +14,15 @@
+--- create-windows-installer.js.orig	2017-09-21 13:39:11.000000000 +0200
++++ create-windows-installer.js	2017-09-21 13:44:15.000000000 +0200
+@@ -11,13 +11,16 @@
    const archSuffix = process.arch === 'ia32' ? '' : '-' + process.arch
    const options = {
      appDirectory: packagedAppPath,
@@ -10,6 +10,7 @@
 +    iconUrl: 'https://raw.githubusercontent.com/spark/particle-dev-app/master/build/resources/particle-dev.ico',
      loadingGif: path.join(CONFIG.repositoryRootPath, 'resources', 'win', 'loading.gif'),
      outputDirectory: CONFIG.buildOutputPath,
+     noMsi: true,
 -    remoteReleases: `https://atom.io/api/updates${archSuffix}?version=${CONFIG.appMetadata.version}`,
 -    setupIcon: path.join(CONFIG.repositoryRootPath, 'resources', 'app-icons', CONFIG.channel, 'atom.ico')
 +    remoteReleases: `https://updates.particle.io/updates${archSuffix}?version=${CONFIG.appMetadata.version}`,
@@ -19,4 +20,4 @@
 +    exe: 'particledev.exe'
    }
  
-   const signing = codeSign && (process.env.ATOM_WIN_CODE_SIGNING_CERT_DOWNLOAD_URL || process.env.ATOM_WIN_CODE_SIGNING_CERT_PATH)
+   const cleanUp = () => {
