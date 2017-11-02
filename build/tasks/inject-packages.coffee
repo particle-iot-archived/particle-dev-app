@@ -20,21 +20,17 @@ module.exports = (grunt) ->
     if grunt.config.get 'particleDevApp.isRelease'
       injectPackage 'particle-dev', grunt.config.get('particleDevApp.particleDevVersion')
 
-    injectPackage 'particle-dev-release-notes', '0.53.2'
     injectPackage 'language-particle', '0.3.5'
     injectPackage 'particle-dev-exception-reporting', '0.36.1'
     injectPackage 'particle-dev-cloud-functions', '0.2.0'
     injectPackage 'particle-dev-cloud-variables', '0.2.0'
     injectPackage 'particle-dev-profiles', '0.2.3'
     injectPackage 'particle-dev-libraries', '0.2.23'
+    injectPackage 'clear-blob-storage', '0.1.3'
 
     # Following packages are required by Atom source code:
     # injectPackage 'welcome'
     # injectPackage 'metrics'
     # injectPackage 'deprecation-cop'
-
-    # Disable folowing packages:
-    injectPackage 'feedback'
-    injectPackage 'release-notes'
 
     injectDependency 'coffeestack', 'git+https://github.com/spark/coffeestack.git#master'

@@ -1,9 +1,9 @@
 --- initialize-application-window.coffee.orig	2017-07-21 11:52:46.000000000 -0500
 +++ initialize-application-window.coffee	2017-07-24 06:12:16.000000000 -0500
-@@ -66,6 +66,22 @@
+@@ -66,6 +66,23 @@
    enablePersistence: true
  })
- 
+
 +if global.isGeneratingSnapshot
 +  # Remove injected packages from snapshot
 +  delete global.atom.packages.packagesCache['switch-header-source']
@@ -19,7 +19,8 @@
 +  delete global.atom.packages.packagesCache['particle-dev-cloud-variables']
 +  delete global.atom.packages.packagesCache['particle-dev-profiles']
 +  delete global.atom.packages.packagesCache['particle-dev-libraries']
++  delete global.atom.packages.packagesCache['clear-blob-storage']
 +
  global.atom.preloadPackages()
- 
+
  # Like sands through the hourglass, so are the days of our lives.
