@@ -33,4 +33,4 @@ module.exports = (grunt) ->
     # injectPackage 'metrics'
     # injectPackage 'deprecation-cop'
 
-    injectDependency 'coffeestack', 'git+https://github.com/spark/coffeestack.git#master'
+    injectDependency 'coffeestack', 'git+https://github.com/particle-iot/coffeestack.git#master'

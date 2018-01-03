@@ -10,11 +10,11 @@ Here you can download latest version of Particle Dev. It will automatically upda
 
 ### Mac OS X
 
-Download the latest [Particle Dev release](https://github.com/spark/particle-dev-app/releases/latest).
+Download the latest [Particle Dev release](https://github.com/particle-iot/particle-dev-app/releases/latest).
 
 ### Windows
 
-Download the latest [Particle Dev release](https://github.com/spark/particle-dev-app/releases/latest).
+Download the latest [Particle Dev release](https://github.com/particle-iot/particle-dev-app/releases/latest).
 
 ### Linux
 

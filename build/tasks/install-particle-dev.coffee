@@ -46,7 +46,7 @@ module.exports = (grunt) ->
     particleDevPath = path.join(workDir, 'node_modules', 'particle-dev')
 
     # Download the release
-    tarballUrl = 'https://github.com/spark/particle-dev/archive/master.tar.gz'
+    tarballUrl = 'https://github.com/particle-iot/particle-dev/archive/master.tar.gz'
     tarballPath = path.join(workDir, 'particledev.tar.gz')
 
     r = request(tarballUrl)
