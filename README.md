@@ -18,7 +18,7 @@ Download the latest [Particle Dev release](https://github.com/particle-iot/parti
 
 ### Linux
 
-Install Atom through your package manager and run `apm install particle-dev-complete`
+Install [Atom](https://atom.io/) through your package manager and run `apm install particle-dev-complete`
 
 ## Using
 
