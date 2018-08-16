@@ -9,11 +9,11 @@ module.exports = (grunt) ->
     workDir = grunt.config.get 'particleDevApp.workDir'
 
     injectPackage 'file-type-icons', '1.3.4'
-    injectPackage 'switch-header-source', '0.22.1'
+    injectPackage 'switch-header-source', '0.27.1'
     injectPackage 'resize-panes', '0.2.0'
     injectPackage 'maximize-panes', '0.2.0'
     injectPackage 'swap-panes', '0.2.0'
-    injectPackage 'tool-bar', '1.1.0'
+    injectPackage 'tool-bar', '1.1.3'
     injectPackage 'monokai', '0.24.0'
     injectPackage 'console-panel', '0.3.0'
 
@@ -25,8 +25,10 @@ module.exports = (grunt) ->
     injectPackage 'particle-dev-cloud-functions', '0.2.0'
     injectPackage 'particle-dev-cloud-variables', '0.2.0'
     injectPackage 'particle-dev-profiles', '0.2.3'
-    injectPackage 'particle-dev-libraries', '0.2.23'
+    injectPackage 'particle-dev-libraries', '0.2.29'
     injectPackage 'clear-blob-storage', '0.1.3'
+
+    injectPackage 'autocomplete-plus', '2.35.6'
 
     # Following packages are required by Atom source code:
     # injectPackage 'welcome'
