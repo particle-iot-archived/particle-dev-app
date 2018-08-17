@@ -13,8 +13,7 @@ else
 	TARGET_SUFFIX=-x${TARGET_ARCH}
 fi
 
-fly -t main execute \
+fly -t production execute \
 	--config ci/${TARGET_OS}${TARGET_SUFFIX}.yml \
-	--exclude-ignored \
 	-i sources=. \
-	-o artefacts=${HOME}/Desktop/Dev/${TARGET_OS}${TARGET_ARCH}
+	-o artefacts=${HOME}/${TARGET_OS}${TARGET_ARCH}
